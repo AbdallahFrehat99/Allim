@@ -52,6 +52,8 @@ body {
 }
 
 .img-fluid {
+    position: relative;
+    right: 30px;
     width: 80%;
     max-width: 90%;
     height: auto;
@@ -82,8 +84,8 @@ body {
     padding: 10px 20px;
     max-height: 50px;
     align-self: start;
-    /* box-shadow: 1px 300px 150px 130px #e0f1fc;     */
-    box-shadow: -15px 355px 1555px 300px #e1f0fc;
+    /* box-shadow: 1px 300px 150px 130px #e0f1fc;      Work in progress    */
+    /* box-shadow: -15px 355px 1555px 300px #e1f0fc; */
 }
 
 .custom-buttons {
@@ -93,14 +95,21 @@ body {
     flex-flow: nowrap;
     gap: 20px;
     padding: 30px;
-    box-shadow: 196px 570px 1626px 163px #e1f0fc;
+    /* box-shadow:-15px 355px 1555px 399px #e1f0fc;     Work in progress  */
 }
-.custom-buttons :nth-child(1) {
+/* .custom-buttons :nth-child(1) {
     box-shadow: 196px 570px 1626px 163px #e1f0fc;
+}*/
+
+    /* 
+#Second-btn{
+    box-shadow: -19px -202px 77px 49px #e1f0fc;      Work in progress  
+} 
+
+#First-btn{
+    /* box-shadow: -13px -16px 1626px 163px #e1f0fc;    Work in progress    
 }
-
-
-
+*/
 .custom-buttons .btn{
     width: 250px;
     height: 200px;
@@ -112,9 +121,6 @@ body {
 
 }
 
-#btn-2{
-
-} 
 
 .fade-shadow {
     position: absolute;
