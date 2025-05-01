@@ -74,6 +74,7 @@ body {
     font-weight: bolder;
     margin-bottom: 20px;
     min-width: 400px;
+    box-shadow: -26px 2px 300px 300px #f5faff;    
 }
 
 .text-btn {
@@ -81,6 +82,8 @@ body {
     padding: 10px 20px;
     max-height: 50px;
     align-self: start;
+    /* box-shadow: 1px 300px 150px 130px #e0f1fc;     */
+    box-shadow: -15px 355px 1555px 300px #e1f0fc;
 }
 
 .custom-buttons {
@@ -90,8 +93,12 @@ body {
     flex-flow: nowrap;
     gap: 20px;
     padding: 30px;
-    
+    box-shadow: 196px 570px 1626px 163px #e1f0fc;
 }
+.custom-buttons :nth-child(1) {
+    box-shadow: 196px 570px 1626px 163px #e1f0fc;
+}
+
 
 
 .custom-buttons .btn{
@@ -101,11 +108,12 @@ body {
     margin: 0 15px;
     color: #2a4d61;
     font-weight: bolder;
-    font-size: 30px;
+    font-size: 30px;   
+
 }
 
 #btn-2{
-    box-shadow: 1px -150px 150px 130px #e0f1fc;    
+
 } 
 
 .fade-shadow {
