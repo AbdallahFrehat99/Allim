@@ -26,7 +26,8 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
-                                    <form>
+                                    <form action="Login_form" method="post">
+                                        {% csrf_token %}
                                         <div class="login-form">
                                             <div class="d-flex align-items-center mb-3 pb-1 custom-logo">
                                                 <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
@@ -42,14 +43,14 @@
 
                                             <div data-mdb-input-init class="form-outline mb-4">
                                                 <label class="form-label" for="emailLogin">Email address</label>
-                                                <input type="email" id="emailLogin"
+                                                <input type="email" id="emailLogin" name="email"
                                                     class="form-control form-control-lg" />
                                             </div>
 
 
                                             <div data-mdb-input-init class="form-outline mb-4">
                                                 <label class="form-label" for="passwordLogin">Password</label>
-                                                <input type="password" id="passwordLogin"
+                                                <input type="password" id="passwordLogin" name="password"
                                                     class="form-control form-control-lg" />
                                             </div>
                                             <div class="mb-3">
@@ -67,7 +68,7 @@
                                             </div>
 
                                             <div class="pt-1 mb-4">
-                                                <button data-mdb-button-init data-mdb-ripple-init
+                                                <button type="submit" data-mdb-button-init data-mdb-ripple-init
                                                     class="btn btn-lg btn-block login-btn" type="button">Login</button>
                                             </div>
 
