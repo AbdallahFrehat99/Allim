@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-    validateField("passwordReg", "passwordFeedback", 10 ,"Please enter a password with a minimum of 10 characters.");
+    validateField("passwordReg", "passwordFeedback", 8 ,"Please enter a password with a minimum of 10 characters.");
     validateField("firstName", "firstNameFeedback", 3, "First name must be at least 3 characters.");
-    validateField("last_name", "lastNameFeedback", 5, "Last name must be at least 5 characters.");
+    validateField("last_name", "lastNameFeedback", 3, "Last name must be at least 5 characters.");
 
     // Email validation
     const emailInput = document.getElementById("email");
@@ -40,13 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
             this.classList.remove("is-invalid");
             this.classList.add("is-valid");
-            emailFeedback.textContent = "✅ Valid email domain";
+            emailFeedback.textContent = "Valid email domain";
             emailFeedback.classList.remove("text-danger");
             emailFeedback.classList.add("text-success");
         } else {
             this.classList.add("is-invalid");
             this.classList.remove("is-valid");
-            emailFeedback.textContent = "❌ Must be a valid email domain (e.g., @gmail.com, @outlook.com, @hotmail.com)";
+            emailFeedback.textContent = " Must be a valid email domain (e.g., @gmail.com, @outlook.com, @hotmail.com)";
             emailFeedback.classList.add("text-danger");
             emailFeedback.classList.remove("text-success");
         }

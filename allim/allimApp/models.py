@@ -3,22 +3,32 @@ import bcrypt
 import re
 
 class UserManager(models.Manager):
-    def validator(self,postdata):
+    def validator(self,postData):
         errors = {}
-        if len(postdata['first_name']) < 3:
-            errors["first_name"] = "First name should be at least 2 characters."
+        if len(postData['first_name']) < 2:
+            errors["first_name"] = "First name must be at least 2 characters."
+        if not postData['first_name'].isalpha():
+            errors["first_name"] = "First name must contain letters only."
 
-        if len(postdata['last_name']) < 3:
-            errors["last_name"] = "Last name should be at least 3 characters."
-            
-
-        # if len(postdata['specialization']) < 1:
-        #     errors["specialization"] = "Please select whether you are a Teacher or a Student. "
+        if len(postData['last_name']) < 2:
+            errors["last_name"] = "Last name must be at least 2 characters."
+        if not postData['last_name'].isalpha():
+            errors["last_name"] = "Last name must contain letters only."
 
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-        if not EMAIL_REGEX.match(postdata['email']):            
-            errors['email'] = "Invalid email address!"
-        return errors  
+        if not postData['email'].strip():
+            errors["email"] = "Email is required."
+        if not EMAIL_REGEX.match(postData['email']):
+            errors["email"] = "Invalid email address."
+
+        if len(postData['password']) < 8:
+            errors["password"] = "Password must be at least 8 characters."
+        if postData['password'] != postData['confirm_password']:
+            errors["confirm_password"] = "Password and confirmation do not match."
+        
+        return errors
+            
+        
 
 
 class Teacher(models.Model):
@@ -36,7 +46,6 @@ class Student(models.Model):
     last_name = models.CharField(max_length=45)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255 )
-    dob = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     teachers = models.ManyToManyField(Teacher, related_name='students') 
@@ -59,13 +68,41 @@ class Lecture(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-def Create_account(postdata):
+def create_teacher_account(postdata):
     password = postdata['password']
     pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()   
     Teacher.objects.create(
         first_name = postdata['first_name'], 
         last_name = postdata['last_name'], 
         email = postdata['email'],
-        # specialization = postdata['specialization'], Note: i didn't know how to do this one
         password = pw_hash  )
 
+def create_student_account(postdata):
+    password = postdata['password']
+    pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()   
+    Student.objects.create(
+        first_name = postdata['first_name'], 
+        last_name = postdata['last_name'], 
+        email = postdata['email'],
+        password = pw_hash  )
+    
+def check_loged_user(request,user_data):
+        email = user_data['email']
+        password = user_data['password']
+        you_are=user_data['you_are']
+        login={
+            'user':False,
+            'password':False
+        }
+        if you_are =='teacher':
+            users = Teacher.objects.filter(email=email)
+        elif you_are == 'student':
+            users = Student.objects.filter(email=email)            
+        if users:
+            login['user']=True
+            user = users[0]
+            if bcrypt.checkpw(password.encode(), user.password.encode()):
+                request.session['user_id'] = user.id
+                request.session['name'] = user.first_name
+                login['password']=True
+        return login
