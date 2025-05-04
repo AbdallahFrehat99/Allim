@@ -1,7 +1,7 @@
 
 from django.urls import path
 from . import views
-
+from .views import chatbot_view, get_bot_response  #Ai
 
 urlpatterns = [
     path('', views.index ,name ='index'),  # Root path
@@ -11,6 +11,8 @@ urlpatterns = [
     path('Login_form', views.Login_form ,name ='loginForm'),  # Root path
     path('teacher/dashboard',views.teacher_dashboard),
     path('student/dashboard',views.student_dashboard),
-    
+    path("chat/", chatbot_view, name="chatbot"),
+    path("chat/api/", get_bot_response, name="chatbot_api"),
+
 
     ]

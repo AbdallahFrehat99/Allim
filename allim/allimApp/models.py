@@ -2,6 +2,7 @@ from django.db import models
 import bcrypt
 import re
 
+
 class UserManager(models.Manager):
     def validator(self,postData):
         errors = {}
