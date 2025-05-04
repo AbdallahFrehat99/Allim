@@ -27,6 +27,7 @@ def reg_form(request):
             return redirect('/register')
         if request.POST['you_are'] == 'teacher':
             models.create_teacher_account(request.POST)
+            request.session['t_id']=request.POST['email']
             return redirect('/teacher/dashboard')
         elif request.POST['you_are'] == 'student':
             models.create_student_account(request.POST)
@@ -101,8 +102,6 @@ def create_course(request):
     models.create_course(request.POST,request.session['t_id'])
     return redirect('/teacher/dashboard')
 
-
-
 def student_dashboard(request):
     if 'user_id' not in request.session or request.session.get('role') != 'student':
         return redirect('login_page')
@@ -147,3 +146,8 @@ def enroll_course(request, course_id):
         messages.success(request, f"You have successfully enrolled in {course.course_name}.")
 
     return redirect('view_all_courses')
+
+def delete_course(request,c_id):
+    models.delete_course(c_id)
+    return redirect('/teacher/dashboard')
+
