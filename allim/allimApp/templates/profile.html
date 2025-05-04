@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-64 bg-[#0f2e52] text-white p-6">
+      <h1 class="text-3xl font-bold mb-8">Allim</h1>
+      <nav class="flex flex-col gap-4">
+        <a href="{% url 'dashboard' %}" class="hover:text-gray-300">Dashboard</a>
+        <a href="{% url 'my_courses' %}" class="hover:text-gray-300">My Courses</a>
+        <a href="{% url 'create_course' %}" class="hover:text-gray-300">Create Course</a>
+        <a href="{% url 'students' %}" class="hover:text-gray-300">Students</a>
+        <a href="{% url 'profile' %}" class="bg-[#2e5583] p-2 rounded text-white">Profile</a>
+        <a href="{% url 'logout' %}" class="hover:text-gray-300">Logout</a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
+      <h2 class="text-4xl font-bold mb-6">My Profile</h2>
+
+      <div class="bg-white p-6 rounded-lg shadow w-full md:w-1/2">
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold mb-1">Name:</label>
+          <p class="text-gray-900">{{ user.name }}</p>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold mb-1">Email:</label>
+          <p class="text-gray-900">{{ user.email }}</p>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold mb-1">Role:</label>
+          <p class="text-gray-900">{{ user.role }}</p>
+        </div>
+
+        <div class="mt-6">
+          <a href="{% url 'edit_profile' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Edit Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

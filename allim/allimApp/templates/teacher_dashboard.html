@@ -1,46 +1,63 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Teacher Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Allim Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-<div class="container py-5">
-    <h1 class="text-center mb-4">Welcome, {{ teacher.name }}</h1>
-
-    <div class="text-center mb-4">
-        <a href="/add_course_page " class="btn btn-primary">+ Add New Course</a>
+<body class="bg-gray-100 font-sans">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-64 bg-[#0f2e52] text-white p-6">
+      <h1 class="text-3xl font-bold mb-8">Allim</h1>
+      <nav class="flex flex-col gap-4">
+        <a href="{% url 'dashboard' %}" class="bg-[#2e5583] p-2 rounded text-white">Dashboard</a>
+        <a href="{% url 'create_course' %}" class="hover:text-gray-300">Create Course</a>
+        <a href="{% url 'students' %}" class="hover:text-gray-300">Students</a>
+        <a href="{% url 'profile' %}" class="hover:text-gray-300">Profile</a>
+        <a href="{% url 'logout' %}" class="hover:text-gray-300">Logout</a>
+      </nav>
     </div>
 
-    {% if courses %}
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for course in courses %}
-                <div class="col">
-                    <div class="card h-100">
-                        {% if course.image_url %}
-                            <img src="{{ course.image_url }}" class="card-img-top" alt="Course Image">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ course.course_name }}</h5>
-                            <p class="card-text">{{ course.description }}</p>
-                            <div class="d-flex justify-content-between mt-3">
-                                <a href="{% url 'edit_course' course.id %}" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="{% url 'delete_course' course.id %}" class="btn btn-sm btn-danger"
-                                onclick="return confirm('Are you sure you want to delete this course?');">
-                                    Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p class="text-center text-muted">No courses added yet.</p>
-    {% endif %}
-</div>
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-4xl font-bold">Dashboard</h2>
+        <a href="{% url 'create_course' %}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Create Course</a>
+      </div>
 
+      <h3 class="text-2xl font-semibold mb-4">Your Courses</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        {% for course in courses %}
+        <div class="bg-white p-4 rounded shadow">
+          <h4 class="text-lg font-semibold">{{ course.title }}</h4>
+          <p class="text-gray-500 text-sm">{{ course.description }}</p>
+          <p class="text-sm mt-2 text-gray-600">Enrollments {{ course.enrollments }}</p>
+        </div>
+        {% empty %}
+        <p>No courses available.</p>
+        {% endfor %}
+      </div>
+
+      <h3 class="text-2xl font-semibold mb-4">Students</h3>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {% for student in students %}
+        <div class="bg-white p-4 rounded shadow flex items-center gap-4">
+          <div class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold">
+            {{ student.name|slice:":1"|upper }}
+          </div>
+          <div>
+            <h4 class="font-semibold">{{ student.name }}</h4>
+            <p class="text-sm text-gray-500">{{ student.info }}</p>
+          </div>
+        </div>
+        {% empty %}
+        <p>No students found.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </body>
 </html>
