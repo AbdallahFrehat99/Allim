@@ -106,3 +106,14 @@ def check_loged_user(request,user_data):
                 request.session['name'] = user.first_name
                 login['password']=True
         return login
+
+def get_teacher(email):
+    return Teacher.objects.get(email=email)
+
+def create_course(course,t_id):
+    Course.objects.create(course_name=course['title'],description=course['description'],teachers=t_id)
+
+def get_teacher_courses(email):
+    tech=Teacher.objects.get(email=email)
+    courses=Course.objects.filter(teachers=tech)
+    return courses

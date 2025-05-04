@@ -39,6 +39,7 @@ def Login_form(request):
         if loged_in_user['user']:
             if loged_in_user['password']:
                 if request.POST['you_are'] == 'teacher':
+                    request.session['t_id']=request.POST['email']
                     return redirect('/teacher/dashboard')
                 elif request.POST['you_are'] == 'student':
                     return redirect('/student/dashboard')
@@ -53,7 +54,11 @@ def Login_form(request):
 
 
 def teacher_dashboard(request):
-    return render(request,'teacher_dashboard.html')
+    context={
+        'teacher':models.get_teacher(request.session['t_id']),
+        'courses':models.get_teacher_courses(request.session['t_id'])
+    }
+    return render(request,'teacher_dashboard.html',context)
 
 def student_dashboard(request):
     return render(request,'student_dashboard.html')
@@ -82,3 +87,16 @@ def get_bot_response(request):
             return JsonResponse({"response": bot_reply})
         except Exception as e:
             return JsonResponse({"response": f"Error: {str(e)}"})
+        
+
+def log_out(request):
+    request.session.clear()
+    return redirect('/login')
+ 
+
+def create_course_page(request):
+    return render(request,'add_course.html')
+
+def create_course(request):
+    models.create_course(request.POST,request.session['t_id'])
+    return redirect('/teacher/dashboard')

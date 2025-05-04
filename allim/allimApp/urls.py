@@ -13,6 +13,10 @@ urlpatterns = [
     path('student/dashboard',views.student_dashboard),
     path("chat/", chatbot_view, name="chatbot"),
     path("chat/api/", get_bot_response, name="chatbot_api"),
+    path('logout',views.log_out),
+    path('teacher/create_course',views.create_course_page),
+    path('create_course',views.create_course),
+
 
 
     ]

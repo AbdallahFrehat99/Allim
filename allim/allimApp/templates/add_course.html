@@ -13,12 +13,11 @@
     <div class="w-64 bg-[#0f2e52] text-white p-6">
       <h1 class="text-3xl font-bold mb-8">Allim</h1>
       <nav class="flex flex-col gap-4">
-        <a href="{% url 'dashboard' %}" class="hover:text-gray-300">Dashboard</a>
-        <a href="{% url 'my_courses' %}" class="hover:text-gray-300">My Courses</a>
-        <a href="{% url 'create_course' %}" class="bg-[#2e5583] p-2 rounded text-white">Create Course</a>
-        <a href="{% url 'students' %}" class="hover:text-gray-300">Students</a>
-        <a href="{% url 'profile' %}" class="hover:text-gray-300">Profile</a>
-        <a href="{% url 'logout' %}" class="hover:text-gray-300">Logout</a>
+        <a href="/teacher/dashboard" class="hover:text-gray-300">Dashboard</a>
+        <a href="" class="bg-[#2e5583] p-2 rounded text-white">Create Course</a>
+        <a href="" class="hover:text-gray-300">Students</a>
+        <a href="" class="hover:text-gray-300">Profile</a>
+        <a href="/logout" class="hover:text-gray-300">Logout</a>
       </nav>
     </div>
 
@@ -26,7 +25,7 @@
     <div class="flex-1 p-8">
       <h2 class="text-4xl font-bold mb-8">Create a New Course</h2>
 
-      <form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow-md max-w-xl">
+      <form action="/create_course" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow-md max-w-xl">
         {% csrf_token %}
         
         <div class="mb-4">
