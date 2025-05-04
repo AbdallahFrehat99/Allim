@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-64 bg-[#0f2e52] text-white p-6">
+      <h1 class="text-3xl font-bold mb-8">Allim</h1>
+      <nav class="flex flex-col gap-4">
+        <a href="{% url 'student_dashboard' %}" class="hover:text-gray-300">Dashboard</a>
+        <a href="{% url 'view_all_courses' %}" class="hover:text-gray-300">Add Course</a>
+        <a href="{% url 'student_profile' %}" class="hover:text-gray-300">Profile</a>
+        <a href="{% url 'logout' %}" class="hover:text-gray-300">Logout</a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
+      <h2 class="text-4xl font-bold mb-6">Edit Your Profile</h2>
+      <form method="POST" class="bg-white rounded shadow p-6 max-w-md">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold">First Name</label>
+          <input type="text" name="first_name" value="{{ student.first_name }}" required class="w-full border border-gray-300 p-2 rounded" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold">Last Name</label>
+          <input type="text" name="last_name" value="{{ student.last_name }}" required class="w-full border border-gray-300 p-2 rounded" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold">Email</label>
+          <input type="email" name="email" value="{{ student.email }}" required class="w-full border border-gray-300 p-2 rounded" />
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="bg-[#2e5583] text-white px-4 py-2 rounded hover:bg-[#24486d]">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

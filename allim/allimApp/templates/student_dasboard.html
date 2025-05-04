@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Allim Student Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-64 bg-[#0f2e52] text-white p-6">
+      <h1 class="text-3xl font-bold mb-8">Allim</h1>
+      <nav class="flex flex-col gap-4">
+        <a href="{% url 'student_dashboard' %}" class="bg-[#2e5583] p-2 rounded text-white">Dashboard</a>
+        <a href="{% url 'view_all_courses' %}" class="hover:text-gray-300">Add Course</a>
+        <a href="{% url 'student_profile' %}" class="hover:text-gray-300">Profile</a>
+        <a href="{% url 'logout' %}" class="hover:text-gray-300">Logout</a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-4xl font-bold">Welcome, {{ student.first_name }}</h2>
+      </div>
+
+      <!-- Enrolled Courses -->
+      <h3 class="text-2xl font-semibold mb-4">Your Courses</h3>
+      {% if courses %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {% for course in courses %}
+          <div class="bg-white p-4 rounded shadow">
+            <h4 class="text-lg font-semibold">{{ course.course_name }}</h4>
+            <p class="text-gray-500 text-sm">{{ course.description }}</p>
+            <p class="text-sm mt-2 text-gray-600">Instructor: {{ course.teachers.first_name }} {{ course.teachers.last_name }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-gray-500 text-lg mt-4">You haven't enrolled in any courses yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

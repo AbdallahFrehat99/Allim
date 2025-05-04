@@ -16,8 +16,11 @@ urlpatterns = [
     path('logout',views.log_out),
     path('teacher/create_course',views.create_course_page),
     path('create_course',views.create_course),
+    path('dashboard/', views.student_dashboard, name='student_dashboard'),
+    path('profile/', views.student_profile, name='student_profile'),
+    path('edit-profile/', views.edit_student_profile, name='edit_student_profile'),
+    path('enroll-course/<int:course_id>/', views.enroll_course, name='enroll_course'),
     path('delete_course/<int:c_id>',views.delete_course)
-
 
 
     ]
