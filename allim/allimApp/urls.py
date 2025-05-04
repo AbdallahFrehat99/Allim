@@ -9,6 +9,8 @@ urlpatterns = [
     path('register', views.register_page ,name ='register'),  # Root path
     path('Reg_form', views.reg_form ,name ='registerForm'),  # Root path
     path('Login_form', views.Login_form ,name ='loginForm'),  # Root path
+    path('teacher/dashboard',views.teacher_dashboard),
+    path('student/dashboard',views.student_dashboard),
     
 
     ]

@@ -57,7 +57,7 @@
                                                 <label class="form-label d-block">You are a:</label>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="you_are"
-                                                        id="teacher" value="teacher">
+                                                        id="teacher" value="teacher" required>
                                                     <label class="form-check-label" for="teacher">Teacher</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
@@ -71,7 +71,13 @@
                                                 <button type="submit" data-mdb-button-init data-mdb-ripple-init
                                                     class="btn btn-lg btn-block login-btn" type="button">Login</button>
                                             </div>
-
+                                            {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
                                             <a class="small text-muted" href="#!">Forgot password?</a>
                                             <p class="mb-5 pb-lg-2" style="color: #2a4d61;">Don't have an account? <a
                                                     href="register" style="color: #2a4d61;">Register here</a></p>
