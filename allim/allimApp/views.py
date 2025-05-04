@@ -92,7 +92,7 @@ def get_bot_response(request):
 def log_out(request):
     request.session.clear()
     return redirect('/login')
- 
+
 
 def create_course_page(request):
     return render(request,'add_course.html')
