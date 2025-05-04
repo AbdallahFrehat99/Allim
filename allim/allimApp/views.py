@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from . import models
-from .models import Teacher
+from .models import Teacher,Student,Course,Lecture
 import bcrypt
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -100,3 +100,50 @@ def create_course_page(request):
 def create_course(request):
     models.create_course(request.POST,request.session['t_id'])
     return redirect('/teacher/dashboard')
+
+
+
+def student_dashboard(request):
+    if 'user_id' not in request.session or request.session.get('role') != 'student':
+        return redirect('login_page')
+
+    student = get_object_or_404(Student, id=request.session['user_id'])
+    context = {
+        'student': student,
+        'courses': student.courses.all()
+    }
+    return render(request, 'student/dashboard.html', context)
+
+
+def student_profile(request):
+    if 'user_id' not in request.session or request.session.get('role') != 'student':
+        return redirect('login_page')
+
+    student = get_object_or_404(Student, id=request.session['user_id'])
+    return render(request, 'student/student_profile.html', {'student': student})
+
+def edit_student_profile(request):
+    student = request.user.student 
+    if request.method == 'POST':
+        student.first_name = request.POST.get('first_name')
+        student.last_name = request.POST.get('last_name')
+        student.email = request.POST.get('email')
+        student.save()
+        messages.success(request, "Your profile has been updated successfully.")
+        return redirect('student_profile')
+    return render(request, 'edit_student_profile.html', {'student': student})
+
+
+
+def enroll_course(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+
+    student = request.user.student 
+
+    if student.courses.filter(id=course.id).exists():
+        messages.info(request, "You are already enrolled in this course.")
+    else:
+        student.courses.add(course)
+        messages.success(request, f"You have successfully enrolled in {course.course_name}.")
+
+    return redirect('view_all_courses')
