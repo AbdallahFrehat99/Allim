@@ -111,9 +111,14 @@ def get_teacher(email):
     return Teacher.objects.get(email=email)
 
 def create_course(course,t_id):
-    Course.objects.create(course_name=course['title'],description=course['description'],teachers=t_id)
+    tech=Teacher.objects.get(email=t_id)
+    Course.objects.create(course_name=course['title'],description=course['description'],teachers=tech)
 
 def get_teacher_courses(email):
     tech=Teacher.objects.get(email=email)
     courses=Course.objects.filter(teachers=tech)
     return courses
+
+def delete_course(c_id):
+    deleted_course=Course.objects.get(id=c_id)
+    deleted_course.delete()

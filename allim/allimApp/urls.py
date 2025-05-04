@@ -16,6 +16,7 @@ urlpatterns = [
     path('logout',views.log_out),
     path('teacher/create_course',views.create_course_page),
     path('create_course',views.create_course),
+    path('delete_course/<int:c_id>',views.delete_course)
 
 
 
