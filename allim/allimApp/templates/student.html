@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Students</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-64 bg-[#0f2e52] text-white p-6">
+      <h1 class="text-3xl font-bold mb-8">Allim</h1>
+      <nav class="flex flex-col gap-4">
+        <a href="{% url 'dashboard' %}" class="hover:text-gray-300">Dashboard</a>
+        <a href="{% url 'create_course' %}" class="hover:text-gray-300">Create Course</a>
+        <a href="{% url 'students' %}" class="bg-[#2e5583] p-2 rounded text-white">Students</a>
+        <a href="{% url 'profile' %}" class="hover:text-gray-300">Profile</a>
+        <a href="{% url 'logout' %}" class="hover:text-gray-300">Logout</a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
+      <h2 class="text-4xl font-bold mb-6">Students</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% for student in students %}
+        <div class="bg-white p-4 rounded shadow flex items-center gap-4">
+          <div class="bg-gray-200 rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
+            {{ student.name|slice:":1"|upper }}
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg">{{ student.name }}</h4>
+            <p class="text-sm text-gray-500">{{ student.email }}</p>
+          </div>
+        </div>
+        {% empty %}
+        <p>No students found.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>
