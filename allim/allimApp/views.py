@@ -3,6 +3,11 @@ from django.contrib import messages
 from . import models
 from .models import Teacher
 import bcrypt
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.conf import settings
+import openai, json
 
 def index(request):
     return render(request,'index.html')
@@ -52,3 +57,28 @@ def teacher_dashboard(request):
 
 def student_dashboard(request):
     return render(request,'student_dashboard.html')
+
+        #OpenAI Ai      
+openai.api_key = settings.OPENAI_API_KEY
+
+def chatbot_view(request):
+    return render(request, "chatbot.html")
+
+@csrf_exempt
+def get_bot_response(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        user_message = data.get("message", "")
+
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": user_message}
+                ]
+            )
+            bot_reply = response.choices[0].message["content"].strip()
+            return JsonResponse({"response": bot_reply})
+        except Exception as e:
+            return JsonResponse({"response": f"Error: {str(e)}"})

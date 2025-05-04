@@ -1,0 +1,19 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignore env files
+.env
+
+# Ignore SQLite database
+db.sqlite3
+
+# Ignore migration history (optional for early dev)
+*/migrations/*.pyc
+*/migrations/__pycache__/
+*/migrations/*.py~
+
+# VSCode and system files
+.vscode/
+.DS_Store
