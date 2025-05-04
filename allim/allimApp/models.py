@@ -28,8 +28,6 @@ class UserManager(models.Manager):
         
         return errors
             
-        
-
 
 class Teacher(models.Model):
     first_name = models.CharField(max_length=45)
@@ -55,7 +53,8 @@ class Student(models.Model):
 class Course(models.Model):
     course_name = models.CharField(max_length=45, unique=True)
     description = models.TextField()
-    teachers = models.ManyToManyField(Teacher, related_name='courses')  
+    teachers = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='courses')
+    students=  models.ManyToManyField(Student, related_name='courses')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
