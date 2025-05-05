@@ -242,3 +242,6 @@ def edit_teacher_profile(request):
         messages.success(request, "Your profile has been updated successfully.")
         return redirect('/teacher_profile')
     return render(request, 'edit_profile.html')
+
+def add_lecture_page(request):
+    return render(request,'add_lecture.html')

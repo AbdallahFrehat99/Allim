@@ -28,6 +28,6 @@ urlpatterns = [
     path('teacher_profile', views.teacher_profile),
     path('edit_teacher_profile_page',views.edit_teacher_page),
     path('edit_teacher_profile', views.edit_teacher_profile),
-
+    path('add_lecture',views.add_lecture_page)
 
     ]
