@@ -22,11 +22,17 @@ urlpatterns = [
     path('enroll_course',views.register_course),
     path('enroll_course/<int:course_id>', views.enroll_course, name='enroll_course'),
     path('delete_course/<int:c_id>',views.delete_course),
+
+    path('<int:course_id>/add_lecture/', views.add_lecture, name='add_lecture'),
+    path('course/<int:course_id>/lectures/', views.course_lectures, name='course_lectures'),
+    path('student/course/<int:course_id>/lectures/', views.student_course_lectures, name='student_course_lectures'),
+
     # path('<int:course_id>/add_lecture', views.add_lecture, name='add_lecture'),
     # path('course/<int:course_id>/lectures', views.course_lectures, name='course_lectures'),
     ################################################################3
     path('teacher_profile', views.teacher_profile),
     path('edit_teacher_profile_page',views.edit_teacher_page),
     # path('edit_teacher_profile', views.edit_teacher_profile),
+
 
     ]
