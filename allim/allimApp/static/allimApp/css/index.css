@@ -5,8 +5,8 @@ body {
 
 .custom-rounded-container {
     border-radius: 20px;
-    /* background: linear-gradient(to bottom, #f5faff 40%, #f0f8fb 60%); */
-    background: linear-gradient(to bottom, #f5faff 40%, #e6f4ff 60%);
+    background: linear-gradient(to bottom, #f5faff 40%, #f0f8fb 60%);
+    /* background: linear-gradient(to bottom, #f5faff 40%, #e6f4ff 60%); */
     padding: 2rem;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     margin: 30px auto;
@@ -28,7 +28,6 @@ body {
     padding: 20px 0;
     border-radius: 20px;
 }
-
 .logo-img {
     height: 100px;
     width: auto;
@@ -139,7 +138,8 @@ body {
     align-items: center;
     width: 100%;
     overflow: hidden;
-    z-index: 1; /* base level */
+    z-index: 1;
+    /* base level */
 }
 .slidier-crads-h{
   background-color: #e6f4ff;
@@ -151,6 +151,9 @@ body {
     width: 100%;
     position: relative; /* important */
     background-color: #e6f4ff;
+    position: relative;
+    /* important */
+    background-color: #f8f9fa;
     z-index: 2;
 }
 
@@ -256,7 +259,7 @@ body {
     scrollbar-width: none;
 }
 
-.header-cards{
+.header-cards {
     position: relative;
     justify-content: center;
     align-items: center;
@@ -264,7 +267,7 @@ body {
     text-align: center;
     z-index: 8;
     color: #2a4d61;
-    
+
 }
 
 /* Full-width background section */
@@ -287,12 +290,12 @@ body {
     padding: 0 20px;
 }
 
-.howheader{
+.howheader {
     align-items: center;
     justify-content: center;
     text-align: center;
     margin-top: 40px;
-    color:#2a4d61;
+    color: #2a4d61;
 }
 
 .how-it-steps {
@@ -327,115 +330,127 @@ body {
     color: #417da0;
 }
 
-.bg-color{
+.bg-color {
     background-color: white;
 }
+
 .featured-tutors-section {
+
   padding: 70px 30px;
   text-align: center;
+
+    padding: 70px 30px;
+
+    text-align: center;
+
 }
 
 .featured-tutors-header h2 {
-  font-size: 2.5rem;
-  color: #2a4d61;
-  margin-bottom: 10px;
-  font-weight: 700;
+    font-size: 2.5rem;
+    color: #2a4d61;
+    margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .featured-tutors-header p {
-  font-size: 1.1rem;
-  color: #417da0;
-  margin-bottom: 40px;
+    font-size: 1.1rem;
+    color: #417da0;
+    margin-bottom: 40px;
 }
 
 .tutors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .tutor-card-pro {
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tutor-card-pro:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
 .tutor-img-wrap {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
 }
 
 .tutor-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .tutor-info {
-  padding: 20px;
-  background-color: #ffffff;
+    padding: 20px;
+    background-color: #ffffff;
 }
 
 .tutor-info h3 {
-  margin: 0;
-  font-size: 1.3rem;
-  color: #2a4d61;
-  font-weight: bold;
+    margin: 0;
+    font-size: 1.3rem;
+    color: #2a4d61;
+    font-weight: bold;
 }
 
 .tutor-info span {
-  display: block;
-  margin-top: 5px;
-  font-size: 0.95rem;
-  color: #417da0;
+    display: block;
+    margin-top: 5px;
+    font-size: 0.95rem;
+    color: #417da0;
 }
 
 .view-all-btn {
-  margin-top: 40px;
+    margin-top: 40px;
 }
 
 .btn-explore-tutors {
-  padding: 12px 25px;
-  background-color: #155E63;
-  color: white;
-  border-radius: 30px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.3s ease;
+    padding: 12px 25px;
+    background-color: #155E63;
+    color: white;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease;
 }
 
 .btn-explore-tutors:hover {
-  background-color: #0e4649;
+    background-color: #0e4649;
 }
 
-  .featured-tutors-ending {
+.featured-tutors-ending {
     color: #2a4d61;
-    font-size: 20px; /* was 25px */
-    margin-top: 50px; /* adjust spacing slightly if needed */
-    font-weight: 600; /* still bold but slightly lighter */
-    text-align: center; /* optional: ensures it stays centered */
-  }
+    font-size: 20px;
+    /* was 25px */
+    margin-top: 50px;
+    /* adjust spacing slightly if needed */
+    font-weight: 600;
+    /* still bold but slightly lighter */
+    text-align: center;
+    /* optional: ensures it stays centered */
+}
 
-  .reviews-section {
+.reviews-section {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     text-align: center;
     border-radius: 20px;
     position: relative;
-  }
-  .reviews-wrapper {
+}
+
+.reviews-wrapper {
     position: relative;
     left: 50%;
     margin-left: -50vw;
@@ -443,81 +458,81 @@ body {
     background-color: #f5faff;
     padding: 60px 0;
     z-index: 0;
-  }
-  
-  .reviews-header h2 {
+}
+
+.reviews-header h2 {
     color: #2a4d61;
     font-size: 2rem;
     margin-bottom: 10px;
-  }
-  
-  .reviews-header p {
+}
+
+.reviews-header p {
     color: #417da0;
     font-size: 1.1rem;
-  }
-  
-  .review-cards-container {
+}
+
+.review-cards-container {
     display: flex;
     gap: 40px;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 40px;
-  }
-  
-  .review-card {
+}
+
+.review-card {
     background-color: white;
     border-radius: 20px;
     padding: 25px;
     max-width: 300px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
     text-align: left;
-  }
-  
-  .review-text {
+}
+
+.review-text {
     font-style: italic;
     color: #555;
     margin-bottom: 20px;
-  }
-  
-  .reviewer-info {
+}
+
+.reviewer-info {
     display: flex;
     align-items: center;
     gap: 15px;
-  }
-  
-  .reviewer-info img {
+}
+
+.reviewer-info img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-  }
-  
-  .reviewer-info h4 {
+}
+
+.reviewer-info h4 {
     margin: 0;
     color: #2a4d61;
     font-size: 1rem;
-  }
-  
-  .reviewer-info span {
+}
+
+.reviewer-info span {
     font-size: 0.9rem;
     color: #666;
-  }
-  
-  .review-slider-wrapper {
+}
+
+.review-slider-wrapper {
     position: relative;
     overflow: hidden;
     max-width: 100%;
     margin: 40px auto 0;
-  }
-  
-  .review-slider {
+}
+
+.review-slider {
     display: flex;
     transition: transform 0.5s ease;
     gap: 20px;
     width: max-content;
-  }
-  
-  .review-card {
+}
+
+.review-card {
     min-width: 300px;
     max-width: 300px;
     background-color: white;
@@ -526,9 +541,9 @@ body {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
     text-align: left;
     flex-shrink: 0;
-  }
-  
-  .review-arrow {
+}
+
+.review-arrow {
     position: absolute;
     top: 40%;
     transform: translateY(-50%);
@@ -540,16 +555,21 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 2;
-  }
-  
-  .review-arrow.left {
-    left: -10px;
-  }
-  
-  .review-arrow.right {
-    right: -10px;
-  }
+}
 
+.review-arrow.left {
+    left: -10px;
+}
+
+.review-arrow.right {
+    right: -10px;
+}
+
+.footer-wrapper {
+    background-color: #f8f9fa; /* same as bg-light */
+    width: 100%;
+  }
+  
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -580,13 +600,14 @@ body {
     .text-btn {
         align-self: center;
     }
+
     .review-card {
         min-width: 90%;
         max-width: 90%;
     }
-    
+
     .review-arrow {
         display: none;
     }
-    
+
 }
