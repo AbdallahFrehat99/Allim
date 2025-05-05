@@ -65,7 +65,7 @@ def teacher_dashboard(request):
 def student_dashboard(request):
     context={
         'student':models.get_student(request.session['s_id']),
-        # 'courses': Student.courses.all()
+        'courses':models.get_student(request.session['s_id']).courses.all()
     }
     return render(request,'student_dasboard.html',context)
 
@@ -106,78 +106,79 @@ def create_course_page(request):
 def create_course(request):
     models.create_course(request.POST,request.session['t_id'])
     return redirect('/teacher/dashboard')
-#################################################################################################
-# def student_dashboard(request):
-#     if 'user_id' not in request.session or request.session.get('role') != 'student':
-#         return redirect('/login')
-
-#     student = get_object_or_404(Student, id=request.session['user_id'])
-#     context = {
-#         'student': student,
-#         'courses': student.courses.all()
-#     }
-#     return render(request, 'student/dashboard.html', context)
-
 
 def student_profile(request):
-    if 'user_id' not in request.session or request.session.get('role') != 'student':
-        return redirect('login_page')
 
-    student = get_object_or_404(Student, id=request.session['user_id'])
-    return render(request, 'student/student_profile.html', {'student': student})
+    student = get_object_or_404(Student, email=request.session['s_id'])
+    return render(request, 'profile_student.html', {'student': student})
+
+def edit_student_page(request):
+    context={
+        'student':models.get_student(request.session['s_id'])
+    }
+    return render(request,'edit_student_profile.html',context)
 
 def edit_student_profile(request):
-    student = request.user.student 
     if request.method == 'POST':
-        student.first_name = request.POST.get('first_name')
-        student.last_name = request.POST.get('last_name')
-        student.email = request.POST.get('email')
-        student.save()
+        models.edit_student_profile(request.POST)
         messages.success(request, "Your profile has been updated successfully.")
-        return redirect('student_profile')
-    return render(request, 'edit_student_profile.html', {'student': student})
+        return redirect('/student_profile')
+    return render(request, 'edit_student_profile.html')
 
 
+def register_course(request):
+    context={
+        'courses':models.get_courses()
+    }
+    return render(request,'add_course1.html',context)
 
 def enroll_course(request, course_id):
     course = get_object_or_404(Course, id=course_id)
-
-    student = request.user.student 
+    student = models.get_student(request.session['s_id'])
 
     if student.courses.filter(id=course.id).exists():
         messages.info(request, "You are already enrolled in this course.")
     else:
-        student.courses.add(course)
+        models.assign_course(course,student)
         messages.success(request, f"You have successfully enrolled in {course.course_name}.")
 
-    return redirect('view_all_courses')
+    return redirect('/enroll_course')
 
 def delete_course(request,c_id):
     models.delete_course(c_id)
     return redirect('/teacher/dashboard')
 
 
-from django.contrib import messages
 
-def add_lecture(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    if request.method == 'POST':
-        Lecture.objects.create(
-            topic=request.POST['topic'],
-            url=request.POST.get('url', ''),
-            description=request.POST.get('description', ''),
-            duration=request.POST.get('duration') or None,
-            course=course
-        )
-        messages.success(request, 'Lecture added successfully!')
-        return redirect('course_lectures', course_id=course.id)
-    return render(request, 'add_lecture.html', {'course': course})
+# def add_lecture(request, course_id):
+#     course = get_object_or_404(Course, id=course_id)
+#     if request.method == 'POST':
+#         Lecture.objects.create(
+#             topic=request.POST['topic'],
+#             url=request.POST.get('url', ''),
+#             description=request.POST.get('description', ''),
+#             duration=request.POST.get('duration') or None,
+#             course=course
+#         )
+#         messages.success(request, 'Lecture added successfully!')
+#         return redirect('course_lectures', course_id=course.id)
+#     return render(request, 'add_lecture.html', {'course': course})
 
 
-def course_lectures(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    lectures = Lecture.objects.filter(course=course)
-    return render(request, 'teacher/course_lectures.html', {
-        'course': course,
-        'lectures': lectures,
-    })
+# def course_lectures(request, course_id):
+#     course = get_object_or_404(Course, id=course_id)
+#     lectures = Lecture.objects.filter(course=course)
+#     return render(request, 'teacher/course_lectures.html', {
+#         'course': course,
+#         'lectures': lectures,
+#     })
+
+def teacher_profile(request):
+    teacher = get_object_or_404(Teacher, email=request.session['t_id'])
+    return render(request, 'profile.html', {'teacher': teacher})
+
+def edit_teacher_page(request):
+    context={
+        'teacher':models.get_teacher(request.session['t_id'])
+    }
+    return render(request,'edit_profile.html',context)
