@@ -1,45 +1,79 @@
-const container = document.getElementById("cardContainer");
-const slider = document.getElementById("cardSlider");
-let cardWidth = 0;
-let scrollSpeed = 4;
-let isUserScrolling = false;
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("cardContainer");
+  const slider = document.getElementById("cardSlider");
 
-function cloneCardsForLoop() {
-  const cards = [...slider.children];
-  if (!cards.length) return;
+  let cardWidth = 0;
+  let scrollSpeed = 1.2;
+  let isUserScrolling = false;
 
-  cardWidth = cards[0].offsetWidth + 20;
+  function cloneCardsForLoop() {
+    const cards = Array.from(slider.children);
+    if (!cards.length) return;
 
-  // Clone start and end for loop
-  cards.forEach(card => slider.appendChild(card.cloneNode(true)));
-  cards.reverse().forEach(card => slider.insertBefore(card.cloneNode(true), slider.firstChild));
+    // Get card width after DOM is fully painted
+    setTimeout(() => {
+      cardWidth = cards[0].offsetWidth + 20;
 
-  // Center scroll
-  container.scrollLeft = cards.length * cardWidth;
-}
+      // Clone at end and beginning
+      cards.forEach(card => slider.appendChild(card.cloneNode(true)));
+      cards.reverse().forEach(card => slider.insertBefore(card.cloneNode(true), slider.firstChild));
 
-function highlightCenterCard() {
-  const cards = slider.querySelectorAll(".custom-carad");
-  const centerX = container.offsetLeft + container.offsetWidth / 2;
+      container.scrollLeft = cards.length * cardWidth;
+    }, 50);
+  }
 
-  let closestCard = null;
-  let closestDist = Infinity;
+  function highlightCenterCard() {
+    const cards = slider.querySelectorAll(".custom-card"); // Fixed typo here
+    const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
 
-  cards.forEach(card => {
-    const rect = card.getBoundingClientRect();
-    const cardCenter = rect.left + rect.width / 2;
-    const dist = Math.abs(centerX - cardCenter);
+    let closest = null;
+    let closestDist = Infinity;
 
-    card.classList.remove("highlight");
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const dist = Math.abs(containerCenter - cardCenter);
 
-    if (dist < closestDist) {
-      closestDist = dist;
-      closestCard = card;
+      card.classList.remove("highlight");
+
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = card;
+      }
+    });
+
+    if (closest) closest.classList.add("highlight");
+  }
+
+  function autoScroll() {
+    if (!isUserScrolling) {
+      container.scrollLeft += scrollSpeed;
+
+      const maxScroll = slider.scrollWidth;
+      const half = maxScroll / 2;
+      const visible = container.offsetWidth;
+
+      if (container.scrollLeft >= maxScroll - visible - 1) {
+        container.scrollLeft = half - visible;
+      }
+      if (container.scrollLeft <= 1) {
+        container.scrollLeft = half;
+      }
+
+      highlightCenterCard();
     }
-  });
 
-  if (closestCard) closestCard.classList.add("highlight");
-}
+    requestAnimationFrame(autoScroll);
+  }
+
+  cloneCardsForLoop();
+  requestAnimationFrame(autoScroll);
+});
+
+
+
+///////Reviews
+
 
 function autoScroll() {
   if (!isUserScrolling) {
