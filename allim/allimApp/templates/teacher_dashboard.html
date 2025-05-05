@@ -35,7 +35,7 @@
             <img src="{{ course.image.url }}" alt="{{ course.course_name }}" class="h-40 w-full object-cover rounded mb-2">
           {% endif %}
 
-          <a href="/teacher/course/{{ course.id }}/lectures/" class="text-lg font-semibold text-blue-700 hover:underline">
+          <a href="/show_lectures/{{course.id}}" class="text-lg font-semibold text-blue-700 hover:underline">
             {{ course.course_name }}
           </a>
           <p class="text-gray-500 text-sm mt-1">{{ course.description }}</p>
