@@ -177,7 +177,7 @@ body {
     z-index: 1; /* base level */
 }
 .slidier-crads-h{
-  background-color: #e6f4ff;
+  background-color: #f5faff;
 }
  
 .cards-container {
@@ -190,7 +190,94 @@ body {
 }
  
  
- 
+ .allim-footer {
+  background-color: #ffffff;
+  color: #333;
+  padding: 50px 20px 30px;
+  font-family: 'Segoe UI', sans-serif;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-section h2,
+.footer-section h4 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.footer-section p,
+.footer-section li,
+.footer-section a {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 6px;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: #007acc;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.85rem;
+  color: #888;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+.review-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 10px 0;
+}
+.review-arrow {
+  background: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  padding: 0 10px;
+}
+
+.review-arrow.left {
+  left: 0;
+}
+
+.review-arrow.right {
+  right: 0;
+}
  
 .custom-card-btn {
     position: relative;

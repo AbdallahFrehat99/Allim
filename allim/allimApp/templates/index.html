@@ -14,7 +14,7 @@
  
   <body>
     <div class="container custom-rounded-container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar">
+      <nav class="navbar navbar-expand-lg custom-navbar">
             <div class="container-fluid">
                 <a class="navbar-brand me-4" href="#">
                     <img src="{% static 'allimApp/img/Logo.png' %}" alt="Logo" class="logo-img" id="logo"/>
@@ -64,6 +64,7 @@
               <!-- <button class="arrow left-arrow" onclick="scrollCards('left')">&#10094;</button> -->
            
               <div class="cards-container" id="cardContainer">
+                <button class="arrow left-arrow" onclick="scrollCards('left')">&#10094;</button>
                 <div class="cards-slider" id="cardSlider">
                   <!-- Your cards -->
                   <div class="card custom-card">
@@ -71,7 +72,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Java</h5>
                       <p class="card-text">Master Java to build secure, cross-platform apps using object-oriented principles.</p>
-                      <a href="#" class="btn custom-card-btn">Show</a>
+                      <a href="/login" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
                  
@@ -80,7 +81,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Python</h5>
                       <p class="card-text">Explore Python for data science, automation, AI, and full-stack web development.</p>
-                      <a href="#" class="btn custom-card-btn">Show</a>
+                      <a href="/login" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
                  
@@ -89,7 +90,7 @@
                     <div class="card-body">
                       <h5 class="card-title">C++</h5>
                       <p class="card-text">Learn C++ to develop high-performance software with deep memory control features.</p>
-                      <a href="#" class="btn custom-card-btn">Show</a>
+                      <a href="/login" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
                  
@@ -98,7 +99,7 @@
                     <div class="card-body">
                       <h5 class="card-title">JavaScript</h5>
                       <p class="card-text">Use JavaScript to add interactive features and dynamic logic to modern websites.</p>
-                      <a href="#" class="btn custom-card-btn">Show</a>
+                      <a href="/login" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
  
@@ -107,7 +108,7 @@
                     <div class="card-body">
                       <h5 class="card-title">ChatGPT</h5>
                       <p class="card-text">Use ChatGPT to master prompt writing, apply AI techniques, and build powerful conversational tools.</p>
-                      <a href="#" class="btn custom-card-btn">Show</a>
+                      <a href="/login" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
                  
@@ -116,14 +117,14 @@
                     <div class="card-body">
                       <h5 class="card-title">HTML</h5>
                       <p class="card-text">Understand HTML to structure webpages with clear, semantic, accessible content.</p>
-                      <a href="#" class="btn custom-card-btn">Show</a>
+                      <a href="/login" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
                 </div>
                 <!-- <button class="arrow right-arrow" onclick="scrollCards('right')">&#10095;</button> -->
               </div>
-             
             </div>
+            <button class="arrow right-arrow" onclick="scrollCards('right')">&#10095;</button>
           </div>
         </section>
         <section class="how-section">
@@ -182,7 +183,7 @@
               </div>
               <div class="tutor-info">
                 <h3>Ibrahim Khalil</h3>
-                <span>AI & Machine Learning</span>
+                <span>Expert in JavaScript</span>
               </div>
             </div>
        
@@ -192,7 +193,7 @@
           <p class="featured-tutors-ending">And many more distinguished educators ready to guide your journey.</p>
        
           <div class="view-all-btn">
-            <a href="#" class="btn-explore-tutors">View All Tutors</a>
+            <a href="/login" class="btn-explore-tutors">View All Tutors</a>
           </div>
         </section>
        
@@ -323,16 +324,47 @@
         </section>
  
       </div>
-        <div class="custom-buttons">
+        <!-- <div class="custom-buttons">
             <button class="btn btn-light shadow-btn" type="button">Reviews</button>
             <button class="btn btn-light shadow-btn" type="button">Become a Tutor</button>
             <button class="btn btn-light shadow-btn" type="button">Browse Sessions</button>
             <div class="fade-shadow"></div>
-          </div>
-         
+          </div> -->
+          
+          
       </div>
        
-       
+      <footer class="allim-footer">
+        <div class="footer-container">
+          <!-- Left: Brand / About -->
+          <div class="footer-section">
+            <h2>Allim</h2>
+            <p>Your path to mastering code, innovation, and real-world skills.</p>
+          </div>
+      
+          <!-- Center: Navigation -->
+          <div class="footer-section">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="/register">Signup</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/login">Courses</a></li>
+              <li><a href="#">Support</a></li>
+            </ul>
+          </div>
+      
+          <!-- Right: Contact -->
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p>Email: <a href="mailto:support@allim.com">support@allim.com</a></p>
+            <p>Phone: +123 456 7890</p>
+          </div>
+        </div>
+      
+        <div class="footer-bottom">
+          <p>&copy; 2025 Allim. All rights reserved.</p>
+        </div>
+      </footer>
        
       </div>
      
@@ -344,6 +376,26 @@
 </div>
 </div>
  
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.getElementById("reviewSlider");
+  
+    window.slideReviews = function (direction) {
+      const card = slider.querySelector(".review-card");
+      if (!card) return;
+  
+      const gap = 20; // Adjust if you have spacing between cards
+      const scrollAmount = card.offsetWidth + gap;
+  
+      slider.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+      });
+    };
+  });
+  
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 <script src="{% static 'allimApp/js/index.js' %}"></script>

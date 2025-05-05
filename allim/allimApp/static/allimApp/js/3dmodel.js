@@ -59,3 +59,4 @@ function hexToRgba(hex) {
   const bigint = parseInt(hex, 16);
   return [(bigint >> 16) / 255, ((bigint >> 8) & 255) / 255, (bigint & 255) / 255, 1];
 }
+
