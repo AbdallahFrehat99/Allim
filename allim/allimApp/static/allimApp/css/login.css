@@ -6,7 +6,7 @@ body {
 }
 .vh-100{
     background: linear-gradient(135deg, #d9ecf9, #eaf6ff);
-    
+    height: auto !important; 
 }
 
 .wrapper {

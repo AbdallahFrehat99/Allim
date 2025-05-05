@@ -65,7 +65,7 @@ def teacher_dashboard(request):
 def student_dashboard(request):
     context={
         'student':models.get_student(request.session['s_id']),
-        'courses': Student.courses.all()
+        # 'courses': Student.courses.all()
     }
     return render(request,'student_dasboard.html',context)
 
