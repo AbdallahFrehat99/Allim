@@ -31,6 +31,7 @@ def reg_form(request):
             return redirect('/teacher/dashboard')
         elif request.POST['you_are'] == 'student':
             models.create_student_account(request.POST)
+            request.session['s_id']=request.POST['email']
             return redirect('/student/dashboard')
     return redirect('/register')
 
