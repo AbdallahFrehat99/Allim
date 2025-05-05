@@ -152,57 +152,57 @@ def delete_course(request,c_id):
 
 
 
-def add_lecture(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    if request.method == 'POST':
-        Lecture.objects.create(
-            topic=request.POST['topic'],
-            url=request.POST.get('url', ''),
-            description=request.POST.get('description', ''),
-            duration=request.POST.get('duration') or None,
-            course=course
-        )
-        messages.success(request, 'Lecture added successfully!')
-        return redirect('course_lectures', course_id=course.id)
-    return render(request, 'add_lecture.html', {'course': course})
+# def add_lecture(request, course_id):
+#     course = get_object_or_404(Course, id=course_id)
+#     if request.method == 'POST':
+#         Lecture.objects.create(
+#             topic=request.POST['topic'],
+#             url=request.POST.get('url', ''),
+#             description=request.POST.get('description', ''),
+#             duration=request.POST.get('duration') or None,
+#             course=course
+#         )
+#         messages.success(request, 'Lecture added successfully!')
+#         return redirect('course_lectures', course_id=course.id)
+#     return render(request, 'add_lecture.html', {'course': course})
+
+#####################################################################################################
+# def course_lectures(request, course_id):
+#     course = get_object_or_404(Course, id=course_id)
+#     lectures = Lecture.objects.filter(course=course)
+#     return render(request, 'teacher/course_lectures.html', {
+#         'course': course,
+#         'lectures': lectures,
+#     })
 
 
-def course_lectures(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    lectures = Lecture.objects.filter(course=course)
-    return render(request, 'teacher/course_lectures.html', {
-        'course': course,
-        'lectures': lectures,
-    })
-
-
-def student_course_lectures(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    lectures = course.lectures.all()
-    return render(request, 'student/course_lectures.html', {
-        'course': course,
-        'lectures': lectures
-    })
+# def student_course_lectures(request, course_id):
+#     course = get_object_or_404(Course, id=course_id)
+#     lectures = course.lectures.all()
+#     return render(request, 'student/course_lectures.html', {
+#         'course': course,
+#         'lectures': lectures
+#     })
 
 
 
-def convert_youtube_url(url):
-    # تحويل رابط YouTube إلى embed
-    youtube_regex = r"(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]+)"
-    match = re.search(youtube_regex, url)
-    if match:
-        video_id = match.group(1)
-        return f"https://www.youtube.com/embed/{video_id}"
-    return url  # يرجع الرابط الأصلي إذا لم يكن YouTube
+# def convert_youtube_url(url):
+#     # تحويل رابط YouTube إلى embed
+#     youtube_regex = r"(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]+)"
+#     match = re.search(youtube_regex, url)
+#     if match:
+#         video_id = match.group(1)
+#         return f"https://www.youtube.com/embed/{video_id}"
+#     return url  # يرجع الرابط الأصلي إذا لم يكن YouTube
 
-def lecture_detail(request, lecture_id):
-    lecture = get_object_or_404(Lecture, id=lecture_id)
-    embed_url = convert_youtube_url(lecture.url)
-    return render(request, 'student/lecture_detail.html', {
-        'lecture': lecture,
-        'embed_url': embed_url
-    })
-
+# def lecture_detail(request, lecture_id):
+#     lecture = get_object_or_404(Lecture, id=lecture_id)
+#     embed_url = convert_youtube_url(lecture.url)
+#     return render(request, 'student/lecture_detail.html', {
+#         'lecture': lecture,
+#         'embed_url': embed_url
+#     })
+####################################################################################################
 # def add_lecture(request, course_id):
 #     course = get_object_or_404(Course, id=course_id)
 #     if request.method == 'POST':
@@ -248,5 +248,41 @@ def search_courses(request):
     courses = Course.objects.filter(course_name__icontains=query)
     return render(request, 'course_list.html', {'courses': courses})
 
-def add_lecture_page(request):
-    return render(request,'add_lecture.html')
+def add_lecture_page(request,course_id):
+    context={
+        'course':models.get_course(course_id)
+    }
+    return render(request,'add_lecture.html',context)
+#########################################################
+def add_lecture_to_course(request,course_id):
+    if request.method == 'POST':
+        models.add_lecture_to_course(request.POST,course_id)
+        return redirect('/teacher/dashboard')
+    return render(request, 'add_lecture.html')
+
+
+def show_lectures(request,course_id):
+    context={
+        'lectures':models.get_course_lectures(course_id),
+        'course':models.get_course(course_id),
+        'student':models.get_student(request.session['s_id'])
+    }
+    return render(request,'course_lectures.html',context)
+
+def get_lecture(request, lecture_id):
+    lecture = models.get_lecture(lecture_id)
+
+    # Convert YouTube URL to embed format if necessary
+    if 'youtube.com/watch?v=' in lecture.url:
+        video_id = lecture.url.split('watch?v=')[1].split('&')[0]
+        lecture.url = f'https://www.youtube.com/embed/{video_id}'
+    
+    # Optional: Add support for shortened YouTube links
+    elif 'youtu.be/' in lecture.url:
+        video_id = lecture.url.split('youtu.be/')[1]
+        lecture.url = f'https://www.youtube.com/embed/{video_id}'
+
+    context = {
+        'lecture': lecture
+    }
+    return render(request, 'lecture_detail.html', context)

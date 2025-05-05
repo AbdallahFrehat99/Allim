@@ -22,13 +22,13 @@ urlpatterns = [
     path('enroll_course',views.register_course),
     path('enroll_course/<int:course_id>', views.enroll_course, name='enroll_course'),
     path('delete_course/<int:c_id>',views.delete_course),
-    path('<int:course_id>/add_lecture/', views.add_lecture, name='add_lecture'),
-    path('course/<int:course_id>/lectures/', views.course_lectures, name='course_lectures'),
-    path('student/course/<int:course_id>/lectures/', views.student_course_lectures, name='student_course_lectures'),
     path('teacher_profile', views.teacher_profile),
     path('edit_teacher_profile_page',views.edit_teacher_page),
     path('edit_teacher_profile', views.edit_teacher_profile),
     path('ajax/search_courses/', views.search_courses, name='search_courses'),
-    path('add_lecture',views.add_lecture_page)
+    path('add_lecture/<int:course_id>',views.add_lecture_page),
+    path('add_lecture_to_course/<int:course_id>',views.add_lecture_to_course),
+    path('show_lectures/<int:course_id>',views.show_lectures),
+    path('lecture/<int:lecture_id>',views.get_lecture)
 
     ]

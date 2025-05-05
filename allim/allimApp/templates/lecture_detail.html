@@ -13,7 +13,7 @@
 
     {% if lecture.url %}
       <div class="aspect-w-16 aspect-h-9">
-        <iframe src="{{ embed_url }}" frameborder="0" class="w-full h-96 rounded" allowfullscreen></iframe>
+        <iframe src="{{lecture.url}}" frameborder="0" class="w-full h-96 rounded" allowfullscreen></iframe>
     </div>
     {% else %}
       <p class="text-red-500">No video URL provided.</p>
