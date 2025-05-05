@@ -16,7 +16,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar">
             <div class="container-fluid">
                 <a class="navbar-brand me-4" href="#">
-                    <img src="{% static 'allimApp/img/Logo.png' %}" alt="Logo" class="logo-img" />
+                    <img src="{% static 'allimApp/img/Logo.png' %}" alt="Logo" class="logo-img" id="logo"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText">
                     <span class="navbar-toggler-icon"></span>
@@ -35,13 +35,25 @@
         </nav>
         
         <div class="student-txt flex-column flex-lg-row">
-          <img src="{% static 'allimApp/img/homepagegirl.png' %}" class="img-fluid student-img" alt="Student" />
+          <!-- <img src="{% static 'allimApp/img/homepagegirl.png' %}" class="img-fluid student-img" alt="Student" /> -->
+          <model-viewer
+          id="book"
+          src="{% static 'allimApp/models/note_book.glb' %}"
+          alt="A 3D book"
+
+          style="width: 100%; height: 600px; background-color: transparent;"
+          interaction-prompt="none"
+          disable-zoom
+          shadow-intensity="1"
+          exposure="1"
+        >
+        </model-viewer>
           <div class="about-container">
                 <p class="about-us">Allim connects you with expert tutors to help you master any subject.</p>
                 <button type="button" class="btn btn-light text-btn">Browse Courses</button>
               </div>
               
-              <section>
+              <section class="slidier-crads-h">
           <h1 class="header-cards">Popular Courses</h1>
             <div class="cards-slider-wrapper">
               <!-- <button class="arrow left-arrow" onclick="scrollCards('left')">&#10094;</button> -->
@@ -327,11 +339,10 @@
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{% static 'allimApp/js/index.js' %}"></script>
-<script src="{% static 'allimApp/js/3d-model.js' %}"></script>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<!-- <script src="{% static 'allimApp/js/index.js' %}"></script> -->
+<script src="{% static 'allimApp/js/3dmodel.js' %}"></script>
 
 </body>
 

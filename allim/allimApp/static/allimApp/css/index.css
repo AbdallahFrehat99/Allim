@@ -14,6 +14,14 @@ body {
     overflow: hidden;
     z-index: 1;
 }
+#book{
+    width: 800vw;
+    height: 600vh;
+    max-width: 8000px;
+    max-height: 9000px;
+    margin: auto;
+    display: block;
+}
 
 .custom-navbar {
     background-color: #f5faff;
@@ -85,7 +93,7 @@ body {
     font-weight: bolder;
     background-color: #f5faff;
     margin-bottom: 20px;
-    box-shadow: -26px 2px 300px 300px #f5faff;
+    /* box-shadow: -26px 2px 300px 300px #f5faff; */
 }
 
 .text-btn {
@@ -133,13 +141,16 @@ body {
     overflow: hidden;
     z-index: 1; /* base level */
 }
+.slidier-crads-h{
+  background-color: #e6f4ff;
+}
 
 .cards-container {
     overflow-x: scroll;
     scroll-behavior: smooth;
     width: 100%;
     position: relative; /* important */
-    background-color: #f8f9fa;
+    background-color: #e6f4ff;
     z-index: 2;
 }
 
@@ -321,7 +332,6 @@ body {
 }
 .featured-tutors-section {
   padding: 70px 30px;
-
   text-align: center;
 }
 
