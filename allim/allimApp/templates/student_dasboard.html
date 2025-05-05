@@ -42,7 +42,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-8">
           {% for course in courses %}
           <div class="bg-white p-4 rounded shadow hover:shadow-md transition">
-            <h4 class="text-lg font-semibold text-blue-700">{{ course.course_name }}</h4>
+            <a href="/show_lectures/{{course.id}}" class="text-lg font-semibold text-blue-700">{{ course.course_name }}</a>
             <p class="text-gray-500 text-sm mt-1">{{ course.description }}</p>
             <p class="text-sm mt-3 text-gray-600">Instructor: {{ course.teachers.first_name }} {{ course.teachers.last_name }}</p>
           </div>

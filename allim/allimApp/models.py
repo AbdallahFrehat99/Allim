@@ -144,3 +144,18 @@ def edit_teacher_profile(data):
     teacher.first_name = data['first_name']
     teacher.last_name = data['last_name']
     teacher.save()
+
+def get_course(course_id):
+    return Course.objects.get(id=course_id)
+
+def add_lecture_to_course(data,course_id):
+    this_course=get_course(course_id)
+    Lecture.objects.create(topic=data['topic'],url=data['url'],description=data['description'],course=this_course)
+
+
+def get_course_lectures(course_id):
+    this_course=get_course(course_id)
+    return Lecture.objects.filter(course=this_course)
+
+def get_lecture(lecture_id):
+    return Lecture.objects.get(id=lecture_id)

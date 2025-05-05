@@ -3,39 +3,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>{{ course.course_name }} - Lectures</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Allim Student Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
 </head>
-<body class="bg-gray-100 p-8 font-sans">
-      <!-- Sidebar -->
-      <div class="w-64 bg-[#0f2e52] text-white p-6">
-        <h1 class="text-3xl font-bold mb-8">Allim</h1>
-        <nav class="flex flex-col gap-4">
-          <a href="/teacher/dashboard" class="bg-[#2e5583] p-2 rounded text-white">Dashboard</a>
-          <a href="/teacher/create_course" class="hover:text-gray-300">Create Course</a>
-          <a href="/teacher_profile" class="hover:text-gray-300">Profile</a>
-          <a href="/logout" class="hover:text-gray-300">Logout</a>
-        </nav>
-      </div>
-  <h1 class="text-3xl font-bold mb-4">{{ course.course_name }} - Lectures</h1>
-  <p class="text-gray-600 mb-6">{{ course.description }}</p>
+<body class="bg-gray-100 font-sans">
 
-  {% if lectures %}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {% for lecture in lectures %}
-      <div class="bg-white p-4 rounded shadow">
-        <h3 class="text-lg font-semibold">{{ lecture.topic }}</h3>
-        <p class="text-gray-600 text-sm">{{ lecture.description }}</p>
-        {% if lecture.url %}
-            <a href="{% url 'lecture_detail' lecture.id %}" class="text-blue-500 hover:underline text-sm mt-2 block">
-                View Lecture
-            </a>
-        {% endif %}
+  <div class="flex flex-col md:flex-row min-h-screen">
+    <!-- Sidebar -->
+    <div class="w-full md:w-64 bg-[#0f2e52] text-white p-6">
+      <div class="flex items-center justify-between md:block">
+        <h1 class="text-3xl font-bold mb-4 md:mb-8">Allim</h1>
       </div>
-      {% endfor %}
+      <nav class="flex flex-col gap-4">
+        <a href="/student/dashboard" class="bg-[#2e5583] p-2 rounded text-white">Dashboard</a>
+        <a href="/enroll_course" class="hover:text-gray-300">Add Course</a>
+        <a href="/student_profile" class="hover:text-gray-300">Profile</a>
+        <a href="/logout" class="hover:text-gray-300">Logout</a>
+      </nav>
     </div>
-  {% else %}
-    <p class="text-gray-500">No lectures available for this course yet.</p>
-  {% endif %}
+
+
+<!-- Main Content -->
+<div class="flex-1 p-8 overflow-auto">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h2 class="text-4xl font-bold">Welcome, {{ student.first_name }}</h2>
+    </div>
+
+  </div>
+
+      
+      <!-- Enrolled Courses -->
+      <h3 class="text-2xl font-semibold mb-4">{{course.course_name}} Lectures</h3>
+      {% if lectures %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-8">
+          {% for lecture in lectures %}
+          <div class="bg-white p-4 rounded shadow hover:shadow-md transition">
+            <a href="/lecture/{{lecture.id}}" class="text-lg font-semibold text-blue-700">{{ lecture.topic }}</a>
+            <!-- <p class="text-gray-500 text-sm mt-1">{{ lecture.description }}</p> -->
+            <p class="text-sm mt-3 text-gray-600">Instructor: {{ course.teachers.first_name }} {{ course.teachers.last_name }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-gray-500 text-lg mt-4">There is no lectures yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
 </body>
 </html>
