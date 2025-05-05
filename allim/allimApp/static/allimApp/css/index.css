@@ -1,9 +1,11 @@
 body {
     background: linear-gradient(135deg, #d9ecf9, #eaf6ff);
+    /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 .custom-rounded-container {
     border-radius: 20px;
+    /* background: linear-gradient(to bottom, #f5faff 40%, #f0f8fb 60%); */
     background: linear-gradient(to bottom, #f5faff 40%, #e6f4ff 60%);
     padding: 2rem;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
@@ -124,20 +126,25 @@ body {
 }
 
 .cards-slider-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
-    position: relative;
-    /* Required for arrows to position absolutely */
-    overflow: hidden;
     width: 100%;
-    padding: 20px 0;
+    overflow: hidden;
+    z-index: 1; /* base level */
 }
 
 .cards-container {
     overflow-x: scroll;
     scroll-behavior: smooth;
     width: 100%;
+    position: relative; /* important */
+    background-color: #f8f9fa;
+    z-index: 2;
 }
+
+
+
 
 .custom-card-btn {
     position: relative;
@@ -145,10 +152,13 @@ body {
     color: white;
 }
 
+
 .cards-slider {
     display: flex;
     flex-wrap: nowrap;
     width: max-content;
+    position: relative;
+    z-index: 2;
 }
 
 .custom-card {
@@ -156,6 +166,7 @@ body {
     width: 18rem;
     border-radius: 25px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform: scale(1);
     background-color: #f5faff;
     overflow: hidden;
     position: relative;
@@ -174,7 +185,7 @@ body {
     color: white;
     border-radius: 25px;
     font-size: 1rem;
-    z-index: 10;
+    z-index: 3;
     /* Ensure it stays on top */
 }
 
@@ -196,37 +207,33 @@ body {
     /* Prevent zoom on image inside highlight */
 }
 
-arrow {
-    background-color: #ffffffcc;
+/* .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
     color: #000;
     border: none;
     font-size: 2.5rem;
     cursor: pointer;
-    z-index: 10;
-    padding: 8px 12px;
+    padding: 10px 15px;
     border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    /* Center vertically */
-    transform: translateY(-50%);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.2s;
+    z-index: 1000; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .left-arrow {
-    left: 0.5rem;
-    /* Adjust distance from left */
+    left: 10px;
 }
 
 .right-arrow {
-    right: 0.5rem;
-    /* Adjust distance from right */
+    right: 10px;
 }
 
 .arrow:hover {
     background-color: #007bff;
     color: #fff;
-}
+} */
 
 /* Hide scrollbar */
 .cards-container::-webkit-scrollbar {
@@ -242,16 +249,308 @@ arrow {
     position: relative;
     justify-content: center;
     align-items: center;
+    margin: 30px;
     text-align: center;
-    z-index: 5;
+    z-index: 8;
     color: #2a4d61;
+    
+}
+
+/* Full-width background section */
+.how-section {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    background-color: #f8f9fa;
+    padding: 55px 0;
+    z-index: 0;
 
 }
+
+.how-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.howheader{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+    color:#2a4d61;
+}
+
+.how-it-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 220px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.step {
+    text-align: center;
+}
+
+.step img {
+    width: 120px;
+    height: 120px;
+    /* padding: 20px; */
+    border-radius: 50%;
+}
+
+.step p {
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #2a4d61;
+}
+
+.arrow {
+    font-size: 50px;
+    color: #417da0;
+}
+
+.bg-color{
+    background-color: white;
+}
+.featured-tutors-section {
+  padding: 70px 30px;
+
+  text-align: center;
+}
+
+.featured-tutors-header h2 {
+  font-size: 2.5rem;
+  color: #2a4d61;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.featured-tutors-header p {
+  font-size: 1.1rem;
+  color: #417da0;
+  margin-bottom: 40px;
+}
+
+.tutors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tutor-card-pro {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tutor-card-pro:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.tutor-img-wrap {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.tutor-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tutor-info {
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.tutor-info h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #2a4d61;
+  font-weight: bold;
+}
+
+.tutor-info span {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.95rem;
+  color: #417da0;
+}
+
+.view-all-btn {
+  margin-top: 40px;
+}
+
+.btn-explore-tutors {
+  padding: 12px 25px;
+  background-color: #155E63;
+  color: white;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn-explore-tutors:hover {
+  background-color: #0e4649;
+}
+
+  .featured-tutors-ending {
+    color: #2a4d61;
+    font-size: 20px; /* was 25px */
+    margin-top: 50px; /* adjust spacing slightly if needed */
+    font-weight: 600; /* still bold but slightly lighter */
+    text-align: center; /* optional: ensures it stays centered */
+  }
+
+  .reviews-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    border-radius: 20px;
+    position: relative;
+  }
+  .reviews-wrapper {
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    width: 100vw;
+    background-color: #f5faff;
+    padding: 60px 0;
+    z-index: 0;
+  }
+  
+  .reviews-header h2 {
+    color: #2a4d61;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .reviews-header p {
+    color: #417da0;
+    font-size: 1.1rem;
+  }
+  
+  .review-cards-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  
+  .review-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    max-width: 300px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    text-align: left;
+  }
+  
+  .review-text {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .reviewer-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .reviewer-info h4 {
+    margin: 0;
+    color: #2a4d61;
+    font-size: 1rem;
+  }
+  
+  .reviewer-info span {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .review-slider-wrapper {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 40px auto 0;
+  }
+  
+  .review-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 20px;
+    width: max-content;
+  }
+  
+  .review-card {
+    min-width: 300px;
+    max-width: 300px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    flex-shrink: 0;
+  }
+  
+  .review-arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: #ffffffcc;
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+  
+  .review-arrow.left {
+    left: -10px;
+  }
+  
+  .review-arrow.right {
+    right: -10px;
+  }
+
 
 /* Responsive */
 @media (max-width: 768px) {
     .logo-img {
         height: 70px;
+    }
+
+    .Howitworks {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
     }
 
     .custom-card {
@@ -271,4 +570,13 @@ arrow {
     .text-btn {
         align-self: center;
     }
+    .review-card {
+        min-width: 90%;
+        max-width: 90%;
+    }
+    
+    .review-arrow {
+        display: none;
+    }
+    
 }
