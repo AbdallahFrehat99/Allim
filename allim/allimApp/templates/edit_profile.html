@@ -13,12 +13,10 @@
     <div class="w-64 bg-[#0f2e52] text-white p-6">
       <h1 class="text-3xl font-bold mb-8">Allim</h1>
       <nav class="flex flex-col gap-4">
-        <a href="{% url 'dashboard' %}" class="hover:text-gray-300">Dashboard</a>
-        <a href="{% url 'my_courses' %}" class="hover:text-gray-300">My Courses</a>
-        <a href="{% url 'create_course' %}" class="hover:text-gray-300">Create Course</a>
-        <a href="{% url 'students' %}" class="hover:text-gray-300">Students</a>
-        <a href="{% url 'profile' %}" class="hover:text-gray-300">Profile</a>
-        <a href="{% url 'logout' %}" class="hover:text-gray-300">Logout</a>
+        <a href="/teacher/dashboard" class="hover:text-gray-300">Dashboard</a>
+        <a href="/teacher/create_course" class="hover:text-gray-300">Create Course</a>
+        <a href="/teacher_profile" class="hover:text-gray-300">Profile</a>
+        <a href="/logout" class="hover:text-gray-300">Logout</a>
       </nav>
     </div>
 
@@ -26,17 +24,22 @@
     <div class="flex-1 p-8 overflow-auto">
       <h2 class="text-4xl font-bold mb-6">Edit Profile</h2>
 
-      <form method="POST" class="bg-white p-6 rounded-lg shadow w-full md:w-1/2">
+      <form action="" method="POST" class="bg-white p-6 rounded-lg shadow w-full md:w-1/2">
         {% csrf_token %}
         
         <div class="mb-4">
-          <label class="block text-gray-700 font-semibold mb-1">Name</label>
-          <input type="text" name="name" value="{{ user.name }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <label class="block text-gray-700 font-semibold mb-1">First Name</label>
+          <input type="text" name="name" value="{{ teacher.first_name }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-semibold mb-1">Last Name</label>
+          <input type="text" name="name" value="{{ teacher.last_name }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
 
         <div class="mb-4">
           <label class="block text-gray-700 font-semibold mb-1">Email</label>
-          <input type="email" name="email" value="{{ user.email }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <input type="email" name="email" value="{{ teacher.email }}" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
 
         <div class="mb-4">
@@ -46,7 +49,7 @@
 
         <div class="mt-6">
           <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Save Changes</button>
-          <a href="{% url 'profile' %}" class="ml-4 text-blue-600 hover:underline">Cancel</a>
+          <a href="/teacher/dashboard" class="ml-4 text-blue-600 hover:underline">Cancel</a>
         </div>
       </form>
     </div>
