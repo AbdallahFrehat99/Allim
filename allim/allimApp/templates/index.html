@@ -1,86 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Allim</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
     {% load static %}
-    <link rel="stylesheet" href="{% static 'allimApp/css/index.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'allimApp/img/favicon.png' %}">
-</head>
-
-<body>
+    <link rel="stylesheet" href="{% static 'allimApp/css/index.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'allimApp/img/favicon.png' %}" />
+  </head>
+  
+  <body>
+  <div id="bookContainer" style="width: 100%; height: 500px;"></div>
     <div class="container custom-rounded-container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary  custom-navbar">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar">
             <div class="container-fluid">
-                <!-- Logo -->
                 <a class="navbar-brand me-4" href="#">
-                    <img src="{% static 'allimApp/img/Logo.png' %}" alt="Logo"
-                        style="height: 160px; width: auto; object-fit: contain;" class="d-inline-block align-text-top">
+                    <img src="{% static 'allimApp/img/Logo.png' %}" alt="Logo" class="logo-img" />
                 </a>
-
-                <!-- Toggler for small screens -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <!-- Navbar content -->
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav ms-auto align-items-center">
-                        <li class="nav-item mx-2">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link" href="#">Find Sessions</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link" href="#">Become a Tutor</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link" href="login">Login</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <span class="text-muted">/</span>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link fw-bold" href="register">Signup</a>
-                        </li>
+                        <li class="nav-item mx-2"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item mx-2"><a class="nav-link" href="#">Find Sessions</a></li>
+                        <li class="nav-item mx-2"><a class="nav-link" href="#">Become a Tutor</a></li>
+                        <li class="nav-item mx-2"><a class="nav-link" href="login">Login</a></li>
+                        <li class="nav-item mx-2"><span class="text-muted">/</span></li>
+                        <li class="nav-item mx-2"><a class="nav-link fw-bold" href="register">Signup</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <div class="student-txt">
-            <img src="{% static 'allimApp/img/homepagegirl.png' %}" class="img-fluid" alt="Student">
-
-            <div class="about-container">
-                <p class="about-us">
-                    Allim connects you with expert tutors to help you master any subject.
-                </p>
+        
+        <div class="student-txt flex-column flex-lg-row">
+          <img src="{% static 'allimApp/img/homepagegirl.png' %}" class="img-fluid student-img" alt="Student" />
+          <div class="about-container">
+                <p class="about-us">Allim connects you with expert tutors to help you master any subject.</p>
                 <button type="button" class="btn btn-light text-btn">Browse Courses</button>
+              </div>
+              
+              <section>
+          <h1 class="header-cards">Popular Courses</h1>
+            <div class="cards-slider-wrapper">
+              <!-- <button class="arrow left-arrow" onclick="scrollCards('left')">&#10094;</button> -->
+            
+              <div class="cards-container" id="cardContainer">
+                <div class="cards-slider" id="cardSlider">
+                  <!-- Your cards -->
+                  <div class="card custom-card">
+                    <img src="{% static 'allimApp/img/java.png' %}" class="card-img-top" alt="Java">
+                    <div class="card-body">
+                      <h5 class="card-title">Java</h5>
+                      <p class="card-text">Master Java to build secure, cross-platform apps using object-oriented principles.</p>
+                      <a href="#" class="btn custom-card-btn">Show</a>
+                    </div>
+                  </div>
+                  
+                  <div class="card custom-card">
+                    <img src="{% static 'allimApp/img/python.png' %}" class="card-img-top" alt="Python">
+                    <div class="card-body">
+                      <h5 class="card-title">Python</h5>
+                      <p class="card-text">Explore Python for data science, automation, AI, and full-stack web development.</p>
+                      <a href="#" class="btn custom-card-btn">Show</a>
+                    </div>
+                  </div>
+                  
+                  <div class="card custom-card">
+                    <img src="{% static 'allimApp/img/c++.png' %}" class="card-img-top" alt="C++">
+                    <div class="card-body">
+                      <h5 class="card-title">C++</h5>
+                      <p class="card-text">Learn C++ to develop high-performance software with deep memory control features.</p>
+                      <a href="#" class="btn custom-card-btn">Show</a>
+                    </div>
+                  </div>
+                  
+                  <div class="card custom-card">
+                    <img src="{% static 'allimApp/img/JavaScript.png' %}" class="card-img-top" alt="JavaScript">
+                    <div class="card-body">
+                      <h5 class="card-title">JavaScript</h5>
+                      <p class="card-text">Use JavaScript to add interactive features and dynamic logic to modern websites.</p>
+                      <a href="#" class="btn custom-card-btn">Show</a>
+                    </div>
+                  </div>
+
+                  <div class="card custom-card">
+                    <img src="{% static 'allimApp/img/ChatGPT.png' %}" class="card-img-top" alt="JavaScript">
+                    <div class="card-body">
+                      <h5 class="card-title">ChatGPT</h5>
+                      <p class="card-text">Use ChatGPT to master prompt writing, apply AI techniques, and build powerful conversational tools.</p>
+                      <a href="#" class="btn custom-card-btn">Show</a>
+                    </div>
+                  </div>
+                  
+                  <div class="card custom-card">
+                    <img src="{% static 'allimApp/img/html.png' %}" class="card-img-top" alt="HTML">
+                    <div class="card-body">
+                      <h5 class="card-title">HTML</h5>
+                      <p class="card-text">Understand HTML to structure webpages with clear, semantic, accessible content.</p>
+                      <a href="#" class="btn custom-card-btn">Show</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- <button class="arrow right-arrow" onclick="scrollCards('right')">&#10095;</button> -->
+              </div>
+              
+            </div>
+          </div>
+        </section>
+        <section class="how-section">
+          <div class="how-container">
+          <h1 class="howheader">How it works</h1>
+          <div class="how-it-steps">
+            <div class="step">
+              <img src="{% static 'allimApp/img/Search.png' %}" alt="Browse">
+              <p>Browse</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="step">
+              <img src="{% static 'allimApp/img/enroll.png' %}" alt="Enroll">
+              <p>Enroll</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="step">
+              <img src="{% static 'allimApp/img/learn.png' %}" alt="Learn">
+              <p>Learn</p>
+            </div>
+          </div>
+        </div>
+          
+        </section>
+        <section class="featured-tutors-section">
+          <div class="featured-tutors-header">
+            <h2>Distinguished Tutors</h2>
+            <p>Learn from professionals with real-world experience and a passion for teaching excellence.</p>
+          </div>
+        
+          <div class="tutors-grid">
+            <!-- Tutor Cards from original section -->
+            <div class="tutor-card-pro">
+              <div class="tutor-img-wrap">
+                <img src="{% static 'allimApp/img/nasri.jpg' %}" alt="Nasri Ladaa">
+              </div>
+              <div class="tutor-info">
+                <h3>Nasri Ladaa</h3>
+                <span>Expert in Java</span>
+              </div>
+            </div>
+        
+            <div class="tutor-card-pro">
+              <div class="tutor-img-wrap">
+                <img src="{% static 'allimApp/img/shatha.jpg' %}" alt="Shatha Bast">
+              </div>
+              <div class="tutor-info">
+                <h3>Shatha Bast</h3>
+                <span>Full Stack Developer</span>
+              </div>
+            </div>
+        
+            <div class="tutor-card-pro">
+              <div class="tutor-img-wrap">
+                <img src="{% static 'allimApp/img/Ibrahim.png' %}" alt="Ibrahim Khalil">
+              </div>
+              <div class="tutor-info">
+                <h3>Ibrahim Khalil</h3>
+                <span>AI & Machine Learning</span>
+              </div>
+            </div>
+        
+            <!-- You can add more cards here -->
+          </div>
+        
+          <p class="featured-tutors-ending">And many more distinguished educators ready to guide your journey.</p>
+        
+          <div class="view-all-btn">
+            <a href="#" class="btn-explore-tutors">View All Tutors</a>
+          </div>
+        </section>
+        
+        <div class="reviews-wrapper">
+        <section class="reviews-section">
+          <div class="reviews-header">
+            <h2>What Our Learners Say</h2>
+            <p>Real feedback from students who’ve grown with our platform</p>
+          </div>
+        
+          <div class="review-slider-wrapper">
+            <button class="review-arrow left" onclick="slideReviews(-1)">&#10094;</button>
+        
+            <div class="review-slider" id="reviewSlider">
+              <div class="review-card">
+                <p class="review-text">"This platform completely changed how I learn. The tutors are exceptional!"</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 1">
+                  <div>
+                    <h4>Ali Mahmoud</h4>
+                    <span>Java Student</span>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="review-card">
+                <p class="review-text">"Practical and professional. I landed a junior dev job after finishing the full-stack course it's even better than Axsos academy!"</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 2">
+                  <div>
+                    <h4>Fatima Noor</h4>
+                    <span>Full Stack Track</span>
+                  </div>
+                </div>
+              </div>
+              <div class="review-card">
+                <p class="review-text">"My tutor was super supportive and explained every concept clearly. It was a game-changer!"</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 4">
+                  <div>
+                    <h4>Lina Hariri</h4>
+                    <span>Python Track</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <p class="review-text">"The curriculum was structured and industry-relevant. I built projects I'm proud of."</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 5">
+                  <div>
+                    <h4>Omar Yasin</h4>
+                    <span>Web Development</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <p class="review-text">"Everything was explained simply and effectively. I gained confidence in my coding skills."</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 6">
+                  <div>
+                    <h4>Nour Khaled</h4>
+                    <span>JavaScript Course</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <p class="review-text">"Joining this platform was the best decision. The quality of tutors is unmatched!"</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 7">
+                  <div>
+                    <h4>Hassan Taleb</h4>
+                    <span>Data Science</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <p class="review-text">"It’s not just learning—it’s mentoring. I felt supported every step of the way."</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 8">
+                  <div>
+                    <h4>Ruba Al Najjar</h4>
+                    <span>Front-End Focus</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <p class="review-text">"I went from zero to building apps in a few months. The hands-on projects really helped."</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 9">
+                  <div>
+                    <h4>Karim Abdallah</h4>
+                    <span>Mobile Development</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <p class="review-text">"Loved how engaging the tutors were. I could ask anything, anytime!"</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 10">
+                  <div>
+                    <h4>Salma Fathi</h4>
+                    <span>UI/UX Design</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <p class="review-text">"Loved the flexibility and how clear everything was. Highly recommend to anyone!"</p>
+                <div class="reviewer-info">
+                  <img src="{% static 'allimApp/img/student.png' %}" alt="Student 3">
+                  <div>
+                    <h4>Yousef Saleh</h4>
+                    <span>AI Learner</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+        
+            <button class="review-arrow right" onclick="slideReviews(1)">&#10095;</button>
+          </div>
+        </section>
+
+      </div>
+        <div class="custom-buttons">
+            <button class="btn btn-light shadow-btn" type="button">Reviews</button>
+            <button class="btn btn-light shadow-btn" type="button">Become a Tutor</button>
+            <button class="btn btn-light shadow-btn" type="button">Browse Sessions</button>
+            <div class="fade-shadow"></div>
+          </div>
+          
+      </div>
+        
+        
+        
+      </div>
+      
             </div>
         </div>
-        <div class="d-grid gap-2 d-md-block custom-buttons">
-            <button class="btn btn-light shadow-btn" id="First-btn" type="button">Reviews</button>             
-            <button class="btn btn-light shadow-btn" id="Second-btn" type="button">Become a Tutor</button> 
-            <button class="btn btn-light shadow-btn" id="third-btn" type="button">Browse Sessions</button> 
-            <div class="fade-shadow"></div>
         
-        <!-- <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1> -->
-    </div>
+
 </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-        crossorigin="anonymous"></script>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'allimApp/js/index.js' %}"></script>
+<script src="{% static 'allimApp/js/3d-model.js' %}"></script>
+
 </body>
 
 </html>
