@@ -110,6 +110,9 @@ def check_loged_user(request,user_data):
 def get_teacher(email):
     return Teacher.objects.get(email=email)
 
+def get_student(email):
+    return Student.objects.get(email=email)
+
 def create_course(course,t_id):
     tech=Teacher.objects.get(email=t_id)
     Course.objects.create(course_name=course['title'],description=course['description'],teachers=tech)

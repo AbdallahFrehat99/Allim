@@ -43,6 +43,7 @@ def Login_form(request):
                     request.session['t_id']=request.POST['email']
                     return redirect('/teacher/dashboard')
                 elif request.POST['you_are'] == 'student':
+                    request.session['s_id']=request.POST['email']
                     return redirect('/student/dashboard')
             else:
                 messages.error(request, "Incorrect password.")
@@ -62,7 +63,11 @@ def teacher_dashboard(request):
     return render(request,'teacher_dashboard.html',context)
 
 def student_dashboard(request):
-    return render(request,'student_dashboard.html')
+    context={
+        'student':models.get_student(request.session['s_id']),
+        'courses': Student.courses.all()
+    }
+    return render(request,'student_dasboard.html',context)
 
         #OpenAI Ai      
 openai.api_key = settings.OPENAI_API_KEY
@@ -101,17 +106,17 @@ def create_course_page(request):
 def create_course(request):
     models.create_course(request.POST,request.session['t_id'])
     return redirect('/teacher/dashboard')
+#################################################################################################
+# def student_dashboard(request):
+#     if 'user_id' not in request.session or request.session.get('role') != 'student':
+#         return redirect('/login')
 
-def student_dashboard(request):
-    if 'user_id' not in request.session or request.session.get('role') != 'student':
-        return redirect('login_page')
-
-    student = get_object_or_404(Student, id=request.session['user_id'])
-    context = {
-        'student': student,
-        'courses': student.courses.all()
-    }
-    return render(request, 'student/dashboard.html', context)
+#     student = get_object_or_404(Student, id=request.session['user_id'])
+#     context = {
+#         'student': student,
+#         'courses': student.courses.all()
+#     }
+#     return render(request, 'student/dashboard.html', context)
 
 
 def student_profile(request):
