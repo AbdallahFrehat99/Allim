@@ -235,3 +235,9 @@ def edit_teacher_page(request):
     }
     return render(request,'edit_profile.html',context)
 
+def edit_teacher_profile(request):
+    if request.method == 'POST':
+        models.edit_teacher_profile(request.POST)
+        messages.success(request, "Your profile has been updated successfully.")
+        return redirect('/teacher_profile')
+    return render(request, 'edit_profile.html')
