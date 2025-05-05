@@ -242,3 +242,8 @@ def edit_teacher_profile(request):
         messages.success(request, "Your profile has been updated successfully.")
         return redirect('/teacher_profile')
     return render(request, 'edit_profile.html')
+
+def search_courses(request):
+    query = request.GET.get('search', '')
+    courses = Course.objects.filter(course_name__icontains=query)
+    return render(request, 'course_list.html', {'courses': courses})
