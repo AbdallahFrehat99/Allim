@@ -29,6 +29,6 @@ urlpatterns = [
     path('edit_teacher_profile_page',views.edit_teacher_page),
     path('edit_teacher_profile', views.edit_teacher_profile),
     path('ajax/search_courses/', views.search_courses, name='search_courses'),
-
+    path('add_lecture',views.add_lecture_page)
 
     ]

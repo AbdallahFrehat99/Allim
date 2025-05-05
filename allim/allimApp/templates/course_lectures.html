@@ -7,6 +7,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-8 font-sans">
+      <!-- Sidebar -->
+      <div class="w-64 bg-[#0f2e52] text-white p-6">
+        <h1 class="text-3xl font-bold mb-8">Allim</h1>
+        <nav class="flex flex-col gap-4">
+          <a href="/teacher/dashboard" class="bg-[#2e5583] p-2 rounded text-white">Dashboard</a>
+          <a href="/teacher/create_course" class="hover:text-gray-300">Create Course</a>
+          <a href="/teacher_profile" class="hover:text-gray-300">Profile</a>
+          <a href="/logout" class="hover:text-gray-300">Logout</a>
+        </nav>
+      </div>
   <h1 class="text-3xl font-bold mb-4">{{ course.course_name }} - Lectures</h1>
   <p class="text-gray-600 mb-6">{{ course.description }}</p>
 

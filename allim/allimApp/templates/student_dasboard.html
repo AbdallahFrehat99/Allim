@@ -10,10 +10,13 @@
   
 </head>
 <body class="bg-gray-100 font-sans">
-  <div class="flex h-screen">
+
+  <div class="flex flex-col md:flex-row min-h-screen">
     <!-- Sidebar -->
-    <div class="w-64 bg-[#0f2e52] text-white p-6">
-      <h1 class="text-3xl font-bold mb-8">Allim</h1>
+    <div class="w-full md:w-64 bg-[#0f2e52] text-white p-6">
+      <div class="flex items-center justify-between md:block">
+        <h1 class="text-3xl font-bold mb-4 md:mb-8">Allim</h1>
+      </div>
       <nav class="flex flex-col gap-4">
         <a href="/student/dashboard" class="bg-[#2e5583] p-2 rounded text-white">Dashboard</a>
         <a href="/enroll_course" class="hover:text-gray-300">Add Course</a>
@@ -21,6 +24,13 @@
         <a href="/logout" class="hover:text-gray-300">Logout</a>
       </nav>
     </div>
+
+
+    <!-- Main Content -->
+    <div class="flex-1 p-4 sm:p-6 md:p-8 overflow-auto">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6">
+        <h2 class="text-3xl sm:text-4xl font-bold">Welcome, {{ student.first_name }}</h2>
+      </div>
 
 
 <!-- Main Content -->
@@ -36,12 +46,12 @@
       <!-- Enrolled Courses -->
       <h3 class="text-2xl font-semibold mb-4">Your Courses</h3>
       {% if courses %}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-8">
           {% for course in courses %}
-          <div class="bg-white p-4 rounded shadow">
-            <h4 class="text-lg font-semibold">{{ course.course_name }}</h4>
-            <p class="text-gray-500 text-sm">{{ course.description }}</p>
-            <p class="text-sm mt-2 text-gray-600">Instructor: {{ course.teachers.first_name }} {{ course.teachers.last_name }}</p>
+          <div class="bg-white p-4 rounded shadow hover:shadow-md transition">
+            <h4 class="text-lg font-semibold text-blue-700">{{ course.course_name }}</h4>
+            <p class="text-gray-500 text-sm mt-1">{{ course.description }}</p>
+            <p class="text-sm mt-3 text-gray-600">Instructor: {{ course.teachers.first_name }} {{ course.teachers.last_name }}</p>
           </div>
           {% endfor %}
         </div>
@@ -50,5 +60,6 @@
       {% endif %}
     </div>
   </div>
+
 </body>
 </html>
