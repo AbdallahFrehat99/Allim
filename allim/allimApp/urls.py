@@ -16,13 +16,23 @@ urlpatterns = [
     path('logout',views.log_out),
     path('teacher/create_course',views.create_course_page),
     path('create_course',views.create_course),
-    path('dashboard/', views.student_dashboard, name='student_dashboard'),
-    path('profile/', views.student_profile, name='student_profile'),
-    path('edit-profile/', views.edit_student_profile, name='edit_student_profile'),
-    path('enroll-course/<int:course_id>/', views.enroll_course, name='enroll_course'),
+    path('student_profile', views.student_profile, name='student_profile'),
+    path('edit-profile-page',views.edit_student_page),
+    path('edit-profile', views.edit_student_profile, name='edit_student_profile'),
+    path('enroll_course',views.register_course),
+    path('enroll_course/<int:course_id>', views.enroll_course, name='enroll_course'),
     path('delete_course/<int:c_id>',views.delete_course),
+
     path('<int:course_id>/add_lecture/', views.add_lecture, name='add_lecture'),
     path('course/<int:course_id>/lectures/', views.course_lectures, name='course_lectures'),
     path('student/course/<int:course_id>/lectures/', views.student_course_lectures, name='student_course_lectures'),
+
+    # path('<int:course_id>/add_lecture', views.add_lecture, name='add_lecture'),
+    # path('course/<int:course_id>/lectures', views.course_lectures, name='course_lectures'),
+    ################################################################3
+    path('teacher_profile', views.teacher_profile),
+    path('edit_teacher_profile_page',views.edit_teacher_page),
+    # path('edit_teacher_profile', views.edit_teacher_profile),
+
 
     ]

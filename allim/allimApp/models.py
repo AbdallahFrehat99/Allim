@@ -125,3 +125,16 @@ def get_teacher_courses(email):
 def delete_course(c_id):
     deleted_course=Course.objects.get(id=c_id)
     deleted_course.delete()
+
+def get_courses():
+    return Course.objects.all()
+
+def assign_course(course,student):
+    return student.courses.add(course)
+
+def edit_student_profile(data):
+    student=get_student(data['email'])
+    student.first_name = data['first_name']
+    student.last_name = data['last_name']
+    student.email = data['email']
+    student.save()
