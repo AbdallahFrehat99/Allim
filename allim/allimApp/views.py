@@ -31,6 +31,7 @@ def reg_form(request):
             return redirect('/teacher/dashboard')
         elif request.POST['you_are'] == 'student':
             models.create_student_account(request.POST)
+            request.session['s_id']=request.POST['email']
             return redirect('/student/dashboard')
     return redirect('/register')
 
@@ -150,6 +151,58 @@ def delete_course(request,c_id):
 
 
 
+
+def add_lecture(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if request.method == 'POST':
+        Lecture.objects.create(
+            topic=request.POST['topic'],
+            url=request.POST.get('url', ''),
+            description=request.POST.get('description', ''),
+            duration=request.POST.get('duration') or None,
+            course=course
+        )
+        messages.success(request, 'Lecture added successfully!')
+        return redirect('course_lectures', course_id=course.id)
+    return render(request, 'add_lecture.html', {'course': course})
+
+
+def course_lectures(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    lectures = Lecture.objects.filter(course=course)
+    return render(request, 'teacher/course_lectures.html', {
+        'course': course,
+        'lectures': lectures,
+    })
+
+
+def student_course_lectures(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    lectures = course.lectures.all()
+    return render(request, 'student/course_lectures.html', {
+        'course': course,
+        'lectures': lectures
+    })
+
+
+
+def convert_youtube_url(url):
+    # تحويل رابط YouTube إلى embed
+    youtube_regex = r"(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]+)"
+    match = re.search(youtube_regex, url)
+    if match:
+        video_id = match.group(1)
+        return f"https://www.youtube.com/embed/{video_id}"
+    return url  # يرجع الرابط الأصلي إذا لم يكن YouTube
+
+def lecture_detail(request, lecture_id):
+    lecture = get_object_or_404(Lecture, id=lecture_id)
+    embed_url = convert_youtube_url(lecture.url)
+    return render(request, 'student/lecture_detail.html', {
+        'lecture': lecture,
+        'embed_url': embed_url
+    })
+
 # def add_lecture(request, course_id):
 #     course = get_object_or_404(Course, id=course_id)
 #     if request.method == 'POST':
@@ -182,3 +235,10 @@ def edit_teacher_page(request):
         'teacher':models.get_teacher(request.session['t_id'])
     }
     return render(request,'edit_profile.html',context)
+
+def edit_teacher_profile(request):
+    if request.method == 'POST':
+        models.edit_teacher_profile(request.POST)
+        messages.success(request, "Your profile has been updated successfully.")
+        return redirect('/teacher_profile')
+    return render(request, 'edit_profile.html')

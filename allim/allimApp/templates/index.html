@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+ 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,10 +11,9 @@
     <link rel="stylesheet" href="{% static 'allimApp/css/index.css' %}" />
     <link rel="icon" type="image/x-icon" href="{% static 'allimApp/img/favicon.png' %}" />
   </head>
-  
+ 
   <body>
     <div class="container custom-rounded-container">
-
         <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar">
             <div class="container-fluid">
                 <a class="navbar-brand me-4" href="#">
@@ -37,37 +36,16 @@
                         <li class="nav-item mx-2"><a class="nav-link fw-bold" href="register">Signup</a></li>
                     </ul>
                 </div>
-
-      <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand me-4" href="#">
-                <img src="{% static 'allimApp/img/Logo.png' %}" alt="Logo" class="logo-img" />
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item mx-2"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item mx-2"><a class="nav-link" href="#">Find Sessions</a></li>
-                    <li class="nav-item mx-2"><a class="nav-link" href="#">Become a Tutor</a></li>
-                    <li class="nav-item mx-2"><a class="nav-link" href="login">Login</a></li>
-                    <li class="nav-item mx-2"><span class="text-muted">/</span></li>
-                    <li class="nav-item mx-2"><a class="nav-link fw-bold" href="register">Signup</a></li>
-                </ul>
-
             </div>
-        </div>
-    </nav>
-    
-        
+        </nav>
+       
         <div class="student-txt flex-column flex-lg-row">
           <!-- <img src="{% static 'allimApp/img/homepagegirl.png' %}" class="img-fluid student-img" alt="Student" /> -->
           <model-viewer
           id="book"
           src="{% static 'allimApp/models/note_book.glb' %}"
           alt="A 3D book"
-
+ 
           style="width: 100%; height: 600px; background-color: transparent;"
           interaction-prompt="none"
           disable-zoom
@@ -79,12 +57,12 @@
                 <p class="about-us">Allim connects you with expert tutors to help you master any subject.</p>
                 <button type="button" class="btn btn-light text-btn">Browse Courses</button>
               </div>
-              
+             
               <section class="slidier-crads-h">
           <h1 class="header-cards">Popular Courses</h1>
             <div class="cards-slider-wrapper">
               <!-- <button class="arrow left-arrow" onclick="scrollCards('left')">&#10094;</button> -->
-            
+           
               <div class="cards-container" id="cardContainer">
                 <div class="cards-slider" id="cardSlider">
                   <!-- Your cards -->
@@ -96,7 +74,7 @@
                       <a href="#" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
-                  
+                 
                   <div class="card custom-card">
                     <img src="{% static 'allimApp/img/python.png' %}" class="card-img-top" alt="Python">
                     <div class="card-body">
@@ -105,7 +83,7 @@
                       <a href="#" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
-                  
+                 
                   <div class="card custom-card">
                     <img src="{% static 'allimApp/img/c++.png' %}" class="card-img-top" alt="C++">
                     <div class="card-body">
@@ -114,7 +92,7 @@
                       <a href="#" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
-                  
+                 
                   <div class="card custom-card">
                     <img src="{% static 'allimApp/img/JavaScript.png' %}" class="card-img-top" alt="JavaScript">
                     <div class="card-body">
@@ -123,7 +101,7 @@
                       <a href="#" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
-
+ 
                   <div class="card custom-card">
                     <img src="{% static 'allimApp/img/ChatGPT.png' %}" class="card-img-top" alt="JavaScript">
                     <div class="card-body">
@@ -132,7 +110,7 @@
                       <a href="#" class="btn custom-card-btn">Show</a>
                     </div>
                   </div>
-                  
+                 
                   <div class="card custom-card">
                     <img src="{% static 'allimApp/img/html.png' %}" class="card-img-top" alt="HTML">
                     <div class="card-body">
@@ -144,7 +122,7 @@
                 </div>
                 <!-- <button class="arrow right-arrow" onclick="scrollCards('right')">&#10095;</button> -->
               </div>
-              
+             
             </div>
           </div>
         </section>
@@ -168,14 +146,14 @@
             </div>
           </div>
         </div>
-          
+         
         </section>
         <section class="featured-tutors-section">
           <div class="featured-tutors-header">
             <h2>Distinguished Tutors</h2>
             <p>Learn from professionals with real-world experience and a passion for teaching excellence.</p>
           </div>
-        
+       
           <div class="tutors-grid">
             <!-- Tutor Cards from original section -->
             <div class="tutor-card-pro">
@@ -187,7 +165,7 @@
                 <span>Expert in Java</span>
               </div>
             </div>
-        
+       
             <div class="tutor-card-pro">
               <div class="tutor-img-wrap">
                 <img src="{% static 'allimApp/img/shatha.jpg' %}" alt="Shatha Bast">
@@ -197,7 +175,7 @@
                 <span>Full Stack Developer</span>
               </div>
             </div>
-        
+       
             <div class="tutor-card-pro">
               <div class="tutor-img-wrap">
                 <img src="{% static 'allimApp/img/Ibrahim.png' %}" alt="Ibrahim Khalil">
@@ -207,27 +185,27 @@
                 <span>AI & Machine Learning</span>
               </div>
             </div>
-        
+       
             <!-- You can add more cards here -->
           </div>
-        
+       
           <p class="featured-tutors-ending">And many more distinguished educators ready to guide your journey.</p>
-        
+       
           <div class="view-all-btn">
             <a href="#" class="btn-explore-tutors">View All Tutors</a>
           </div>
         </section>
-        
+       
         <div class="reviews-wrapper">
         <section class="reviews-section">
           <div class="reviews-header">
             <h2>What Our Learners Say</h2>
             <p>Real feedback from students who’ve grown with our platform</p>
           </div>
-        
+       
           <div class="review-slider-wrapper">
             <button class="review-arrow left" onclick="slideReviews(-1)">&#10094;</button>
-        
+       
             <div class="review-slider" id="reviewSlider">
               <div class="review-card">
                 <p class="review-text">"This platform completely changed how I learn. The tutors are exceptional!"</p>
@@ -239,7 +217,7 @@
                   </div>
                 </div>
               </div>
-        
+       
               <div class="review-card">
                 <p class="review-text">"Practical and professional. I landed a junior dev job after finishing the full-stack course it's even better than Axsos academy!"</p>
                 <div class="reviewer-info">
@@ -260,7 +238,7 @@
                   </div>
                 </div>
               </div>
-              
+             
               <div class="review-card">
                 <p class="review-text">"The curriculum was structured and industry-relevant. I built projects I'm proud of."</p>
                 <div class="reviewer-info">
@@ -271,7 +249,7 @@
                   </div>
                 </div>
               </div>
-              
+             
               <div class="review-card">
                 <p class="review-text">"Everything was explained simply and effectively. I gained confidence in my coding skills."</p>
                 <div class="reviewer-info">
@@ -282,7 +260,7 @@
                   </div>
                 </div>
               </div>
-              
+             
               <div class="review-card">
                 <p class="review-text">"Joining this platform was the best decision. The quality of tutors is unmatched!"</p>
                 <div class="reviewer-info">
@@ -293,7 +271,7 @@
                   </div>
                 </div>
               </div>
-              
+             
               <div class="review-card">
                 <p class="review-text">"It’s not just learning—it’s mentoring. I felt supported every step of the way."</p>
                 <div class="reviewer-info">
@@ -304,7 +282,7 @@
                   </div>
                 </div>
               </div>
-              
+             
               <div class="review-card">
                 <p class="review-text">"I went from zero to building apps in a few months. The hands-on projects really helped."</p>
                 <div class="reviewer-info">
@@ -315,7 +293,7 @@
                   </div>
                 </div>
               </div>
-              
+             
               <div class="review-card">
                 <p class="review-text">"Loved how engaging the tutors were. I could ask anything, anytime!"</p>
                 <div class="reviewer-info">
@@ -326,7 +304,7 @@
                   </div>
                 </div>
               </div>
-              
+             
               <div class="review-card">
                 <p class="review-text">"Loved the flexibility and how clear everything was. Highly recommend to anyone!"</p>
                 <div class="reviewer-info">
@@ -338,12 +316,12 @@
                 </div>
               </div>
             </div>
-            
-        
+           
+       
             <button class="review-arrow right" onclick="slideReviews(1)">&#10095;</button>
           </div>
         </section>
-
+ 
       </div>
         <div class="custom-buttons">
             <button class="btn btn-light shadow-btn" type="button">Reviews</button>
@@ -351,67 +329,27 @@
             <button class="btn btn-light shadow-btn" type="button">Browse Sessions</button>
             <div class="fade-shadow"></div>
           </div>
-          <footer class="footer-wrapper mt-5 pt-4 pb-3">
-            <div class="container">
-              <div class="row">
-          
-                <div class="col-md-4 mb-3">
-                  <img src="{% static 'allimApp/img/Logo.png' %}" alt="Allim Logo" class="mb-2" style="max-width: 120px;" />
-                  <p class="text-muted small">Allim connects learners with expert tutors across the globe.</p>
-                </div>
-          
-                <div class="col-md-4 mb-3">
-                  <h5 class="fw-bold">Quick Links</h5>
-                  <ul class="list-unstyled">
-                    <li><a href="#" class="text-decoration-none text-muted">Home</a></li>
-                    <li><a href="#" class="text-decoration-none text-muted">Find Sessions</a></li>
-                    <li><a href="#" class="text-decoration-none text-muted">Become a Tutor</a></li>
-                    <li><a href="login" class="text-decoration-none text-muted">Login</a></li>
-                    <li><a href="register" class="text-decoration-none text-muted">Signup</a></li>
-                  </ul>
-                </div>
-          
-                <div class="col-md-4 mb-3">
-                  <h5 class="fw-bold">Contact Us</h5>
-                  <p class="text-muted small mb-1">Email: support@allim.com</p>
-                  <p class="text-muted small mb-1">Phone: +970 123 456 789</p>
-                  <p class="text-muted small">Address: Ramallah, Palestine</p>
-                </div>
-              </div>
-          
-              <hr />
-          
-              <div class="text-center text-muted small">
-                © 2025 Allim. All rights reserved.
-              </div>
-            </div>
-          </footer>
-          
+         
       </div>
-        
-        
-        
+       
+       
+       
       </div>
-      
+     
             </div>
         </div>
-        
-
+       
+ 
 </div>
 </div>
 </div>
-
-
+ 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 <script src="{% static 'allimApp/js/index.js' %}"></script>
 <script src="{% static 'allimApp/js/3dmodel.js' %}"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{% static 'allimApp/js/index.js' %}"></script>
-
-
+ 
 </body>
-
+ 
 </html>
+ 
