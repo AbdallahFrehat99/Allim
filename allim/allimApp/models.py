@@ -136,5 +136,11 @@ def edit_student_profile(data):
     student=get_student(data['email'])
     student.first_name = data['first_name']
     student.last_name = data['last_name']
-    student.email = data['email']
     student.save()
+
+
+def edit_teacher_profile(data):
+    teacher=get_teacher(data['email'])
+    teacher.first_name = data['first_name']
+    teacher.last_name = data['last_name']
+    teacher.save()
