@@ -32,8 +32,10 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         {% for course in courses %}
         <div class="bg-white p-4 rounded shadow">
-          <h4 class="text-lg font-semibold">{{ course.course_name }}</h4>
-          <p class="text-gray-500 text-sm">{{ course.description }}</p>
+          <a href="/teacher/course/{{ course.id }}/lectures/" class="text-lg font-semibold text-blue-700 hover:underline">
+            {{ course.course_name }}
+          </a>
+                    <p class="text-gray-500 text-sm">{{ course.description }}</p>
       
           <div class="mt-4 flex space-x-2">
             <a href="/delete_course/{{course.id}}"

@@ -151,3 +151,28 @@ def delete_course(request,c_id):
     models.delete_course(c_id)
     return redirect('/teacher/dashboard')
 
+
+from django.contrib import messages
+
+def add_lecture(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if request.method == 'POST':
+        Lecture.objects.create(
+            topic=request.POST['topic'],
+            url=request.POST.get('url', ''),
+            description=request.POST.get('description', ''),
+            duration=request.POST.get('duration') or None,
+            course=course
+        )
+        messages.success(request, 'Lecture added successfully!')
+        return redirect('course_lectures', course_id=course.id)
+    return render(request, 'add_lecture.html', {'course': course})
+
+
+def course_lectures(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    lectures = Lecture.objects.filter(course=course)
+    return render(request, 'teacher/course_lectures.html', {
+        'course': course,
+        'lectures': lectures,
+    })
