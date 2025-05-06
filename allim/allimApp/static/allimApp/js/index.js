@@ -1,114 +1,114 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("cardContainer");
-  const slider = document.getElementById("cardSlider");
+// document.addEventListener("DOMContentLoaded", () => {
+//   const container = document.getElementById("cardContainer");
+//   const slider = document.getElementById("cardSlider");
 
-  let cardWidth = 0;
-  let scrollSpeed = 1.2;
-  let isUserScrolling = false;
+//   let cardWidth = 0;
+//   let scrollSpeed = 1.2;
+//   let isUserScrolling = false;
 
-  function cloneCardsForLoop() {
-    const cards = Array.from(slider.children);
-    if (!cards.length) return;
+//   function cloneCardsForLoop() {
+//     const cards = Array.from(slider.children);
+//     if (!cards.length) return;
 
-    // Get card width after DOM is fully painted
-    setTimeout(() => {
-      cardWidth = cards[0].offsetWidth + 20;
+//     // Get card width after DOM is fully painted
+//     setTimeout(() => {
+//       // cardWidth = cards[0].offsetWidth + 20;
 
-      // Clone at end and beginning
-      cards.forEach(card => slider.appendChild(card.cloneNode(true)));
-      cards.reverse().forEach(card => slider.insertBefore(card.cloneNode(true), slider.firstChild));
+//       // Clone at end and beginning
+//       cards.forEach(card => slider.appendChild(card.cloneNode(true)));
+//       cards.reverse().forEach(card => slider.insertBefore(card.cloneNode(true), slider.firstChild));
 
-      container.scrollLeft = cards.length * cardWidth;
-    }, 50);
-  }
+//       container.scrollLeft = cards.length * cardWidth;
+//     }, 50);
+//   }
 
-  function highlightCenterCard() {
-    const cards = slider.querySelectorAll(".custom-card"); // Fixed typo here
-    const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
+//   function highlightCenterCard() {
+//     const cards = slider.querySelectorAll(".custom-card"); // Fixed typo here
+//     const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
 
-    let closest = null;
-    let closestDist = Infinity;
+//     let closest = null;
+//     let closestDist = Infinity;
 
-    cards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const cardCenter = rect.left + rect.width / 2;
-      const dist = Math.abs(containerCenter - cardCenter);
+//     cards.forEach(card => {
+//       const rect = card.getBoundingClientRect();
+//       const cardCenter = rect.left + rect.width / 2;
+//       const dist = Math.abs(containerCenter - cardCenter);
 
-      card.classList.remove("highlight");
+//       card.classList.remove("highlight");
 
-      if (dist < closestDist) {
-        closestDist = dist;
-        closest = card;
-      }
-    });
+//       if (dist < closestDist) {
+//         closestDist = dist;
+//         closest = card;
+//       }
+//     });
 
-    if (closest) closest.classList.add("highlight");
-  }
+//     if (closest) closest.classList.add("highlight");
+//   }
 
-  function autoScroll() {
-    if (!isUserScrolling) {
-      container.scrollLeft += scrollSpeed;
+//   function autoScroll() {
+//     if (!isUserScrolling) {
+//       container.scrollLeft += scrollSpeed;
 
-      const maxScroll = slider.scrollWidth;
-      const half = maxScroll / 2;
-      const visible = container.offsetWidth;
+//       const maxScroll = slider.scrollWidth;
+//       const half = maxScroll / 2;
+//       const visible = container.offsetWidth;
 
-      if (container.scrollLeft >= maxScroll - visible - 1) {
-        container.scrollLeft = half - visible;
-      }
-      if (container.scrollLeft <= 1) {
-        container.scrollLeft = half;
-      }
+//       if (container.scrollLeft >= maxScroll - visible - 1) {
+//         container.scrollLeft = half - visible;
+//       }
+//       if (container.scrollLeft <= 1) {
+//         container.scrollLeft = half;
+//       }
 
-      highlightCenterCard();
-    }
+//       highlightCenterCard();
+//     }
 
-    requestAnimationFrame(autoScroll);
-  }
+//     requestAnimationFrame(autoScroll);
+//   }
 
-  cloneCardsForLoop();
-  requestAnimationFrame(autoScroll);
-});
-
-
-
-///////Reviews
+//   cloneCardsForLoop();
+//   requestAnimationFrame(autoScroll);
+// });
 
 
-function autoScroll() {
-  if (!isUserScrolling) {
-    container.scrollLeft += scrollSpeed;
 
-    const maxScroll = slider.scrollWidth;
-    const half = maxScroll / 2;
-    const visible = container.offsetWidth;
+// ///////Reviews
 
-    if (container.scrollLeft >= maxScroll - visible - 1) {
-      container.scrollLeft = half - visible;
-    }
 
-    if (container.scrollLeft <= 1) {
-      container.scrollLeft = half;
-    }
+// function autoScroll() {
+//   if (!isUserScrolling) {
+//     container.scrollLeft += scrollSpeed;
 
-    highlightCenterCard();
-  }
+//     const maxScroll = slider.scrollWidth;
+//     const half = maxScroll / 2;
+//     const visible = container.offsetWidth;
 
-  requestAnimationFrame(autoScroll);
-}
+//     if (container.scrollLeft >= maxScroll - visible - 1) {
+//       container.scrollLeft = half - visible;
+//     }
 
-function scrollSlider(dir) {
-  isUserScrolling = true;
-  container.scrollLeft += dir * cardWidth;
-  setTimeout(() => isUserScrolling = false, 500);
-}
+//     if (container.scrollLeft <= 1) {
+//       container.scrollLeft = half;
+//     }
 
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    cloneCardsForLoop();
-    requestAnimationFrame(autoScroll);
-  }, 10); // Delay ensures layout is stable
-});
+//     highlightCenterCard();
+//   }
+
+//   requestAnimationFrame(autoScroll);
+// }
+
+// function scrollSlider(dir) {
+//   isUserScrolling = true;
+//   container.scrollLeft += dir * cardWidth;
+//   setTimeout(() => isUserScrolling = false, 500);
+// }
+
+// window.addEventListener("load", () => {
+//   setTimeout(() => {
+//     cloneCardsForLoop();
+//     requestAnimationFrame(autoScroll);
+//   }, 10); // Delay ensures layout is stable
+// });
 
 
 
