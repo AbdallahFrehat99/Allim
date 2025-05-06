@@ -44,7 +44,6 @@
           {% for course in courses %}
           <div class="bg-white p-4 rounded shadow hover:shadow-md transition">
             <a href="/show_lectures/{{course.id}}" class="text-lg font-semibold text-blue-700">{{ course.course_name }}</a>
-            <p class="text-gray-500 text-sm mt-1">{{ course.description }}</p>
             <p class="text-sm mt-3 text-gray-600">Instructor: {{ course.teachers.first_name }} {{ course.teachers.last_name }}</p>
           </div>
           {% endfor %}
@@ -54,6 +53,9 @@
       {% endif %}
     </div>
   </div>
-
+  <a href="/chat" class="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-300">
+    <i class="fas">open chat</i>
+  </a>
+  
 </body>
 </html>

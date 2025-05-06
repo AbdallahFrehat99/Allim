@@ -20,14 +20,27 @@
     </style>
 </head>
 <body>
-<div class="container py-5">
-    <h2 class="mb-4 text-center">💬 Chat with AI</h2>
-    <div id="chat-box" class="mb-3"></div>
-    <form id="chat-form" class="input-group">
-        <input type="text" id="user-input" class="form-control" placeholder="Type your message..." required>
-        <button type="submit" class="btn btn-primary">Send</button>
-    </form>
-</div>
+    <div class="container py-5">
+        <h2 class="mb-4 text-center">💬 Chat with AI</h2>
+      
+        <div id="chat-box" class="mb-4 p-3 border rounded bg-light" style="height: 300px; overflow-y: auto;"></div>
+      
+        <form id="chat-form">
+          <div class="mb-3">
+            <input type="text" id="user-input" class="form-control" placeholder="Type your message..." required>
+          </div>
+      
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary" onclick="history.back()">
+              ← Back
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+      
 
 <script>
     const chatBox = document.getElementById("chat-box");
