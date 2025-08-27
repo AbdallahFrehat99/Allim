@@ -31,7 +31,9 @@ It provides a simple, lightweight alternative to platforms like **Udemy**, focus
 
 ---
 
-https://github.com/user-attachments/assets/22dc0284-7a83-40f9-97f8-632b2076c06a
+
+https://github.com/user-attachments/assets/e5deb10c-f59c-49f1-bc79-85719a9ee926
+
 
 
 ## 👨‍💻 Contributors
